@@ -1,0 +1,8 @@
+<ul class="pick_list_lite">
+{% for pick in pick_list %}
+    <li>
+    {{ pick.author }} picked {{ pick.winner.abreviation }}
+    <span class="timestamp">{{ pick.timestamp|date:"Y-m-d H:i:s" }}</span>
+    </li>
+{% endfor %}
+</ul>

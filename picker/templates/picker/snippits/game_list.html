@@ -1,0 +1,23 @@
+{% load picker_extras %}
+
+<ul class="game_list">
+{% for game in game_list %}
+
+    <a href="{% url 'picker:game_detail' pk=game.id %}">
+    <li>
+    
+    <span class="team_name">{{ game.away_team }}</span>
+    at
+    <span class="team_name">{{ game.home_team }}</span>
+
+    <span class="pick">{{ game|get_game_pick_by_author:user }}</span>
+    
+    <br />
+    
+    <span class="game_date">{{ game.kickoff_time|date:"Y-m-d H:i" }}</span>
+    
+    </li>
+    </a>
+
+{% endfor %}
+</ul>

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<a href="{% url 'picker:season_detail' pk=1 %}">To Week One</a>
+
+<h2>Known Issues</h2>
+<ul>
+    <li>Game_Detail is not listing user's most recent pick for the game</li>
+    <li>Index link is broken</li>
+</ul>
+
+<h2>Priority Todo List</h2>
+<ul>
+    <li>UserCentric</li>
+    <ul>
+        <li>List user's pick history</li>
+        <li>Give avatar/logo/icon/color choice</li>
+        <li>List w/l Record</li>
+        <li>List users ordered by w/l record</li>
+        
+    </ul>
+    <li>TeamCentric</li>
+    <ul>
+        <li>List team's CGBS games</li>
+        <li>PrettyPrint a team by its colors</li>
+        <li>Get irl Schedule. External Link?</li>
+        <li>Show team's irl w/l record</li>
+    </ul>
+    
+    <li>SeasonCentric</li>
+    <ul>
+        <li>Provide a nice index page listing active seasons.</li>
+        <li>Provide a leaderboard page</li>
+    </ul>
+    
+    <li>Site Development</li>
+    <ul>
+        <li>Style</li>
+
+        <li>Others</li>
+        <ul>
+            <li>Figure out fixtures and try to generate a fixture for the team's schedule</li>
+            <li>Registration CAPTCHA - http://stackoverflow.com/questions/2275806/easy-to-use-django-captcha-or-registration-app-with-captcha</li>
+        </ul>
+    </ul>
+</ul>
+       
+<h2>Stretch Todo List or Options</h2>
+<ul>
+    <li>Have the start of picking determined by week#?</li>
+    <li>Allow anonymous/silenced picking?</li>
+    <li>Compare picks between two people</li>
+    <li>Have week incremented via schedule or chronjob (postseason is a b****)</li>
+    <li>TI83 Plus (Silver Edition)</li>
+    <li>Rando Calrisian</li>
+    <ul>
+    </ul>
+</ul>
+
+{% endblock %}s

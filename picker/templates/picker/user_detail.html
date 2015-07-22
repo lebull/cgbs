@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% load breadcrumbs %}
+{% block breadcrumbs %}
+    CGBS
+{% endblock %}
+
+{% block content %}
+
+<h2>{{ user.username }}</h2>
+
+{% for week_number, week_of_games in games.items %}
+    <h2>Week {{ week_number }}</h2>
+    {% include 'picker/snippits/game_list.html' with game_list=week_of_games user=request.user only %}
+{% endfor %}
+
+{% endblock %}

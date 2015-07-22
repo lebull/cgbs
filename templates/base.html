@@ -1,0 +1,33 @@
+{% load staticfiles %}
+
+<html>
+<head>
+    <title>CGBS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script type="text/javascript" src="{% static 'jquery/jquery-1.11.3.min' %}"></script>
+    <script type="text/javascript" src="{% static 'slimmenu/jquery.slimmenu.min.js' %}"></script>
+    
+    {% block head %}{% endblock %}
+    
+    <link rel="stylesheet" href="{% static 'slimmenu/slimmenu.css' %}" />
+    
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+</head>
+
+<body>
+    {% include 'slimmenu.html' %}
+    <div id="page_wrapper">
+        <div id="breadcrumb_bar">{% block breadcrumbs %}{% endblock %}</div>
+        
+        {% block page_title %}
+        {% endblock %}
+        
+        <div id="content_wrapper">
+            
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+</html>

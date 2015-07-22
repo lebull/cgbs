@@ -1,0 +1,266 @@
+html, body{
+    margin: 0px;
+    padding: 0px;
+    font-family: arial;
+    color:#333;
+}
+
+body{
+
+    background-color: #EEE;
+}
+
+hr {
+    margin: 0px;
+    padding: 0px;
+    border: solid thin #AAA;
+    border-width: 1px 0px 0px 0px;
+}
+
+button{
+    background: none;
+    border: none;
+    color: #EEE;
+    background-color: #111;
+    font-size: 18px;
+    padding: 5px 25px;
+    border-radius: 15px;
+}
+
+button:hover{
+    background-color: #333;
+    cursor: pointer;
+}
+
+#page_wrapper{
+    width: 80%;
+    margin-left:auto;
+    margin-right:auto;
+    background-color: #F8F8F8;
+    
+    /*
+    border: solid thin #666666;
+    border-width: 0px 1px 1px;
+    box-shadow: 3px 5px 8px #000000;*/
+}
+
+#content_wrapper{
+    padding: 10px 30px 30px;
+    font-size: 14px;
+}
+
+#breadcrumb_bar{
+    color:#AAA;
+    background-color: #333;
+    padding: 5px 20px;
+    border: solid 1px #111;
+}
+
+#breadcrumb_bar a{
+    color: #FFF;
+    margin: 0px 5px;
+}
+
+.page_title{
+    text-shadow: 0 0 5px #000;
+    color: #FFF;
+    background-color: #888;
+    padding: 5px 50px;
+    margin: 0px;
+}
+
+.page_column_wrapper{
+    text-align: center;
+    padding: None;
+    margin: None;
+    
+}
+
+.page_column{
+    width: 49%;
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+    min-width: 300px;
+}
+
+/*snippits*/
+
+.widget{
+    display:inline-block;
+    vertical-align: top;
+    min-width: 300px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    box-shadow: 0px 5px 6px #999;
+}
+
+.widget .widget_content_wrapper{
+    padding: 10px;
+    background-color: #EEE;
+    border: solid thin #CCC;
+    /*border-width: 0px 1px 1px 1px;*/
+}
+
+.widget h2{
+    color: #FFF;
+    background-color: #222;
+    color: #EEE;
+    margin: 0px;
+    padding: 3px 6px;
+    font-size: 18px;
+}
+
+.widget h3{
+    font-size: 18px;
+    margin: 0;
+    padding: 10px 0 3px 25px;
+    color: #666;
+    font-weight: 300;
+    font-size: 12px;
+}
+
+.widget ul{
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.widget li{
+
+    border: solid thin #CCC;
+    border-width: 0px 0px 1px 0px;
+    padding: 5px 5px;
+}
+
+.widget form{
+    margin-bottom: None;
+    padding: None;
+}
+
+.season_list{
+    width: 80%;   
+    text-align: center;
+    margin-left:auto;
+    margin-right:auto;
+    border: solid thin #333;
+    border-width: 1px 1px 0px 1px;
+}
+
+.season_list a{
+    font-size: 50px;
+    text-decoration: none;
+    color: #000;
+
+    text-align: center;
+    display: block;
+    background-color: #AAA;
+    border: solid thin #333;
+    border-width: 0px 0px 1px 0px;
+    
+    
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e6eff7+40,d7dfe5+100 */
+background: #e6eff7; /* Old browsers */
+background: -moz-linear-gradient(top,  #e6eff7 40%, #d7dfe5 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(40%,#e6eff7), color-stop(100%,#d7dfe5)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #e6eff7 40%,#d7dfe5 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #e6eff7 40%,#d7dfe5 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #e6eff7 40%,#d7dfe5 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #e6eff7 40%,#d7dfe5 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6eff7', endColorstr='#d7dfe5',GradientType=0 ); /* IE6-9 */
+
+}
+
+.season_list a:hover{
+    background: none;
+    background-color: #EEE;
+}
+
+.game_list{
+     list-style-type: none;
+     padding-left:0;
+     max-width: 600px;
+}
+
+.game_list a{
+    color: #000;
+    text-decoration: none;
+}
+
+.game_list a: hover{
+    
+}
+
+.game_list li{
+    display: block;
+    /*margin-left: 15px;*/
+    /*border: solid thin #333;*/
+    
+    padding: 5px 10px;
+    vertical-align: middle;
+    background-color: #F8F8F8;
+    box-shadow: inset 0 0 6px #DDD;
+
+}
+
+.game_list li:hover{
+
+    box-shadow: inset 0 0 8px #888;
+}
+
+.game_list .game_date{
+    opacity: 0.5;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.game_list .pick{
+    float: right;
+}
+
+/*generic*/
+.timestamp{
+    opacity: 0.5;
+    font-size: 12px;
+    letter-spacing: -0.5px;
+}
+
+
+/*slimmenu customizations*/
+
+.collapse-button:hover, .collapse-button:focus {
+
+
+}
+
+ul.slimmenu {
+    /*changes by lebull*/
+    text-align: right;
+    border: solid thin black;
+    border-width: 0px 0px 1px 0px;
+    background-color: #AAA;
+
+}
+
+ul.slimmenu li{
+    width:180px;
+    text-align: left;
+}
+
+ul.slimmenu li a{
+    text-decoration: none;
+}
+
+ul.slimmenu li a:hover{
+
+}
+/*http://paletton.com/#uid=13-0u0kbUKy2QZd7jTigl-ikusS*/
+
+
+@media screen and (max-width: 625px) {
+    .content_wrapper{
+        
+    }
+}

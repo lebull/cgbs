@@ -1,0 +1,29 @@
+We need views to:
+    UserCentric
+        Picks:
+            Just list em.  Link if we can change em?
+        Give avatar/logo/icon choice
+        List w/l Record
+        
+        List users ordered by w/l record
+        
+        Allow anonymous/silenced picking?
+        
+        Compare picks between two people
+        
+        
+        
+    TeamCentric
+        Schedule:
+            Get games
+        
+        Show rank
+        
+        
+We also need to
+    Have the start of picking determined by week#
+    Figure out fixtures and try to generate a fixture for the schedule
+    TI83 Plus (Silver Edition)
+    Rando Calrisian
+    
+    Registration CAPTCHA - http://stackoverflow.com/questions/2275806/easy-to-use-django-captcha-or-registration-app-with-captcha

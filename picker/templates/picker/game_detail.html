@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load picker_extras %}
+
+{% block head %}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <a href="{% url 'index' %}">CGBS</a> - 
+    <a href="{% url 'picker:season_detail' game.season.id %}">{{ game.season }}</a> -
+    <a href="{% url 'picker:game_detail' game.id %}">{{ game }}</a>
+{% endblock %}
+
+{% block page_title %}
+    <h1 class="page_title">{{ game }}</h1>
+{% endblock %}
+
+{% block content %}
+
+    {% ifequal game.complete True %}
+        {{game.away_team.abreviation}} {{ game.away_score }} - {{game.home_team.abreviation}} {{ game.home_score }}
+    {% else %}
+        <p>Kickoff Time: {{ game.kickoff_time }}</p>
+    {% endifequal %}
+    
+    
+    <hr />
+    
+    {% if my_pick %}
+        <h2>My Pick: {% firstof my_pick.funny_winner_name my_pick.winner.name "None" %}</h2>
+    {% endif %}
+    
+    {% ifequal game|can_user_pick:user True %}
+
+        {{ game|can_user_pick:user }}
+        
+        <h2>Submit your pick</h2>
+        
+        <form method="POST" action="{% url 'picker:pick_submit' %}">
+        {% csrf_token %}
+        <table>
+            {{ pick_form.as_table }}
+            <tr><td colspan=2><input type="submit"/></td>
+        </table>
+        </form>
+    
+    {% else %}
+        {% ifequal game.pickable False %}
+            <p>Picking for this game is closed.</p>
+        {% endifequal %}
+    {% endifequal %}
+    
+    <h2>This game's picks</h2>
+
+    
+    <div class="widget">
+        <h2>{{ game.away_team }} ( {{ away_picks|length }} )</h2>
+        <div class="widget_content_wrapper">
+            {% include 'picker/snippits/pick_list_lite.html' with pick_list=away_picks only %}
+        </div>
+    
+        <h2>{{ game.home_team }} ( {{ home_picks|length }} )</h2>
+        <div class="widget_content_wrapper">
+            {% include 'picker/snippits/pick_list_lite.html' with pick_list=home_picks only %}
+        </div>
+    </div>
+    
+    
+    <div class="widget">
+        <h2>Pick History</h2>
+        <div class="widget_content_wrapper">
+            {% include 'picker/snippits/pick_list_lite.html' with pick_list=all_picks only %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% if season %}
+    <div class="widget">
+        <div class="widget_content_wrapper" style="text-align: center;">
+            <form action="{% url 'picker:join_season' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="season_id" value="{{ season.id }}" />
+                <button>Join</button>
+            </form>
+        </div>
+    </div>
+{% else %}
+    <span class="error">Problem loading this widget</span>
+{% endif %}

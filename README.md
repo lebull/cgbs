@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
      ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
     '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
@@ -35,3 +36,7 @@ https://docs.djangoproject.com/en/1.7/intro/tutorial01/
 
 Visit http://docs.c9.io for support, or to learn more about using Cloud9 IDE.
 To watch some training videos, visit http://www.youtube.com/user/c9ide
+=======
+# cgbs
+College Gameday Board of Science
+>>>>>>> d7a34d71212b9f8a8e8aaee8d6b443be68dffc1c

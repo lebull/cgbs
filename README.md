@@ -5,25 +5,25 @@ College Gameday Board of Science
 Priority Todo
 -------------
 
-*User Detail
-  *List User's Pick History
+* User Detail
+  * List User's Pick History
 
-*Team Detail
-  *List passed/upcomming games
+* Team Detail
+  * List passed/upcomming games
 
-*Pick Grid
+* Pick Grid
 
-*Registration
-  *Extend forms:
-    *Register
-    *Login
-    *Change Password
-  *Registration Captcha?
+* Registration
+  * Extend forms:
+    * Register
+    * Login
+    * Change Password
+  * Registration Captcha?
 
-*Styling
-  *Media Screen adjustment for small/mobile screens.
+* Styling
+  * Media Screen adjustment for small/mobile screens.
 
 Stretch Todo
 ------------
-*Utilize team colors when displaying
+* Utilize team colors when displaying
 

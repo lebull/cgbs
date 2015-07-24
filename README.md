@@ -6,22 +6,22 @@ Priority Todo
 -------------
 
 *User Detail
---*List User's Pick History
+  *List User's Pick History
 
 *Team Detail
---*List passed/upcomming games
+  *List passed/upcomming games
 
 *Pick Grid
 
 *Registration
---*Extend forms:
-----*Register
-----*Login
-----*Change Password
---*Registration Captcha?
+  *Extend forms:
+    *Register
+    *Login
+    *Change Password
+  *Registration Captcha?
 
 *Styling
---*Media Screen adjustment for small/mobile screens.
+  *Media Screen adjustment for small/mobile screens.
 
 Stretch Todo
 ------------

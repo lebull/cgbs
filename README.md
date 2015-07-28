@@ -1,6 +1,14 @@
 College Gameday Board of Science
 ================================
 
+College Gameday Board of Science began in the depths of bay 6 of MSSC.
+(history)
+
+(Features)
+
+(Implementation Description)
+
+
 
 Priority Todo
 -------------
@@ -18,14 +26,16 @@ Priority Todo
 
 * Styling
   * Media Screen adjustment for small/mobile screens.
+  * Forms
+  * favicon.ico
 
 Stretch Todo
 ------------
 * Team Detail
   * List passed/upcomming games
   
-
 * Utilize team colors when displaying
+* Front Page News (via another blog app?)
 
 
 Known Issues

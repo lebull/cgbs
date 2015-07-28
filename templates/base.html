@@ -24,6 +24,10 @@
         {% block page_title %}
         {% endblock %}
         
+        {% if error_message %}
+            {{ error_message }}
+        {% endif %}
+        
         <div id="content_wrapper">
             
             {% block content %}{% endblock %}

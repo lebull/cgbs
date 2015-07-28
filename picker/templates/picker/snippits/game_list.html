@@ -10,12 +10,20 @@
     at
     <span class="team_name">{{ game.home_team }}</span>
 
-    <span class="pick">{{ game|get_game_pick_by_author:user }}</span>
+    {% if game.winner %}
+    <span class="winner">{{ game.winner }} won.</span>
+    {% endif %}
+
+
     
     <br />
     
-    <span class="game_date">{{ game.kickoff_time|date:"Y-m-d H:i" }}</span>
+    <span class="game_date">{%firstof game.kickoff_time|date:"Y-m-d H:i" 'TBA'%}</span>
     
+    {% if user.is_authenticated %}
+    <span class="pick">{{ game|get_game_pick_by_author:user }} Picked</span>
+    {% endif %}
+
     </li>
     </a>
 

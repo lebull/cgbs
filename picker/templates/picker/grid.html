@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load picker_extras %}
+
+{% block head %}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <a href="{% url 'index' %}">CGBS</a> - 
+    <a href="{% url 'picker:season_detail' season.id %}">{{ season }}(placeholder)</a> -
+    Grid
+{% endblock %}
+
+{% block page_title %}
+    <h1 class="page_title">{{ season }}(placeholder) - Week {{ season.current_week }}</h1>
+{% endblock %}
+
+{% block content %}
+
+
+    <table class="pick_grid">
+        
+        <tr>
+                <th></th>
+                
+                {% for user in users %}
+                <th>
+                    {{ user }}
+                </th>
+                {% endfor %}
+        </tr>
+        
+        {% for game in games %}
+        
+            <tr>
+                <th>
+                    <a href="{% url 'picker:game_detail' game.id %}" class="fancy_button">{{ game }}</a>
+                </th>
+                
+                {% for user in users %}
+                
+                    {% with game|get_game_pick_by_author:user as user_pick %}
+                        {% ifequal user_pick.winner game.winner %}
+                            <td class="good_pick">{{ user_pick.winner.abreviation }}</td>
+                        {% else %}
+                            <td class="bad_pick">{{ user_pick.winner.abreviation }}</td>
+                        {% endifequal %}
+                    {% endwith %}
+                {% endfor %}
+                
+            </tr>
+        {% endfor %}
+        </table>
+{% endblock %}

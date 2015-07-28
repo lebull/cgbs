@@ -1,6 +1,6 @@
 {% load picker_extras %}
 {% if season %}
-    <ul class="user_list">
+    <ol class="user_list">
     {% for user in season.users.all %}
     
         <li>
@@ -13,7 +13,7 @@
         </li>
     
     {% endfor %}
-    </ul>
+    </ol>
 {% else %}
     <span class="error">Template Error</span>
 {% endif %}

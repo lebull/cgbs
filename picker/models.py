@@ -28,7 +28,10 @@ class Season(models.Model):
         result = (0, 0)
         
         for game in complete_games:
-            if game.get_current_pick_by_author(user).winner == game.winner:
+            
+            pick = game.get_current_pick_by_author(user)
+            
+            if pick != None and pick.winner == game.winner:
                 result = (result[0] + 1, result[1])
             else:
                 result = (result[0], result[1] + 1)
@@ -47,7 +50,6 @@ class Season(models.Model):
             record = (0, 0)
         
             for game in complete_games:
-    
                 if game.get_current_pick_by_author(user).winner == game.winner:
                     record[user] = (record[0] + 1, record[1])
                 else:
@@ -124,11 +126,13 @@ class Game(models.Model):
         #TODO: Create a manager, and create a get_pickable method.
     #Keep this here, though.  Refactor to pickable
     def can_pick(self):
-
-        if self.complete == False\
-            and self.kickoff_time\
-            and timezone.now() <= self.kickoff_time:
+        if self.week == self.season.current_week:
+            if self.kickoff_time == None:
                 return True
+    
+            if self.complete == False\
+                and timezone.now() <= self.kickoff_time:
+                    return True
         return False
                 
     can_pick.admin_order_field = 'kickoff_time'
@@ -137,7 +141,7 @@ class Game(models.Model):
     pickable = property(can_pick)
     
     def can_user_pick(self, user):
-        if self.can_pick == True and user in self.season.users.all():
+        if self.can_pick() == True and user in self.season.users.all():
             return True
         else:
             return False
@@ -167,6 +171,17 @@ class Game(models.Model):
             return self.pick_set.filter(author=author).all()
         except Pick.DoesNotExist:
             return []
+        
+    def get_all_active_picks(self):
+        
+        return_dict = {}
+        
+        for user in self.season.users.all():
+            return_dict[user] = self.get_current_pick_by_author(user)
+            
+        return return_dict
+            
+            
         
     def get_away_home_picks(self):
         
@@ -233,6 +248,7 @@ class Pick(models.Model):
     # class Meta:
     #     #get_latest_by = 'timestamp'
     #     #get_latest_by = 'id'
+        
     
     def __unicode__(self):
         return str(self.winner.name)    

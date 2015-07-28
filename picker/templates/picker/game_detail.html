@@ -16,60 +16,84 @@
 
 {% block content %}
 
-    {% ifequal game.complete True %}
-        {{game.away_team.abreviation}} {{ game.away_score }} - {{game.home_team.abreviation}} {{ game.home_score }}
-    {% else %}
-        <p>Kickoff Time: {{ game.kickoff_time }}</p>
-    {% endifequal %}
-    
-    
-    <hr />
-    
-    {% if my_pick %}
-        <h2>My Pick: {% firstof my_pick.funny_winner_name my_pick.winner.name "None" %}</h2>
-    {% endif %}
-    
-    {% ifequal game|can_user_pick:user True %}
+    <div class="page_column">
 
-        {{ game|can_user_pick:user }}
-        
-        <h2>Submit your pick</h2>
-        
-        <form method="POST" action="{% url 'picker:pick_submit' %}">
-        {% csrf_token %}
-        <table>
-            {{ pick_form.as_table }}
-            <tr><td colspan=2><input type="submit"/></td>
-        </table>
-        </form>
-    
-    {% else %}
-        {% ifequal game.pickable False %}
-            <p>Picking for this game is closed.</p>
-        {% endifequal %}
-    {% endifequal %}
-    
-    <h2>This game's picks</h2>
-
-    
-    <div class="widget">
-        <h2>{{ game.away_team }} ( {{ away_picks|length }} )</h2>
-        <div class="widget_content_wrapper">
-            {% include 'picker/snippits/pick_list_lite.html' with pick_list=away_picks only %}
+        <div class="widget">
+            <h2>Game Details</h2>
+            <div class="widget_content_wrapper">
+                {% ifequal game.complete True %}
+                    {{game.away_team.abreviation}} {{ game.away_score }} - {{game.home_team.abreviation}} {{ game.home_score }}
+                {% else %}
+                    <p>Kickoff Time: {{ game.kickoff_time }}</p>
+                {% endifequal %}
+            </div>
         </div>
     
-        <h2>{{ game.home_team }} ( {{ home_picks|length }} )</h2>
-        <div class="widget_content_wrapper">
-            {% include 'picker/snippits/pick_list_lite.html' with pick_list=home_picks only %}
-        </div>
+    
+        <div class="widget">
+            <h2>My Pick</h2>
+            {% ifequal game|can_user_pick:user True %}
+            
+                <div class="widget_content_wrapper">
+                    <span>The winner will be - </span>
+                    <div class="pick_form">
+                        <form  method="POST" action="{% url 'picker:pick_submit' %}">
+                            {% csrf_token %}
+                            {{ away_team_pick_form }}
+                            <input class="fancy_button {% ifequal my_pick.winner game.away_team %} active_pick {% endifequal %}" type="submit" value="{{ game.away_team }}"/>
+                        </form>
+                        
+                        <form class="pick_form" method="POST" action="{% url 'picker:pick_submit' %}">
+                            {% csrf_token %}
+                            {{ home_team_pick_form }}
+                            <input class="fancy_button {% ifequal my_pick.winner game.home_team %} active_pick {% endifequal %}" type="submit" value="{{ game.home_team }}"/>
+                       </form>
+                    </div>
+                </div>
+            
+            {% else %}
+                {% ifequal game.pickable False %}
+                    <div class="notice">Picking for this game is closed.</div>
+                {% endifequal %}
+            {% endifequal %}
+        </div> 
+    
     </div>
+    <div class="page_column">
+            
+        <div class="widget">
+            <h2>This game's picks</h2>
+            {% if away_picks %}
     
-    
-    <div class="widget">
-        <h2>Pick History</h2>
-        <div class="widget_content_wrapper">
-            {% include 'picker/snippits/pick_list_lite.html' with pick_list=all_picks only %}
+                <h3>{{ game.away_team }} ( {{ away_picks|length }} )</h3>
+                <div class="widget_content_wrapper">
+                    {% include 'picker/snippits/pick_list_lite.html' with pick_list=away_picks only %}
+                </div>
+        
+            {% else %}
+            
+                <div class="notice">No one has picked {{ game.away_team }}.</div>
+        
+            {% endif %}
+        
+        
+            {% if home_picks %}
+                <h3>{{ game.home_team }} ( {{ home_picks|length }} )</h3>
+                <div class="widget_content_wrapper">
+                    {% include 'picker/snippits/pick_list_lite.html' with pick_list=home_picks only %}
+                </div>
+            {% else %}
+                <div class="notice">No one has picked {{ game.home_team }}.</div>
+            {% endif %}
         </div>
+        
+        {% if pick_history %}
+            <div class="widget">
+                <h2>Pick History</h2>
+                <div class="widget_content_wrapper">
+                    {% include 'picker/snippits/pick_list_lite.html' with pick_list=pick_history only %}
+                </div>
+            </div>
+        {% endif %}
     </div>
-
 {% endblock %}

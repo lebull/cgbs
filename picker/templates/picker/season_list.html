@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <a href="{% url 'index' %}">CGBS</a>
+{% endblock %}
+
+{% block page_title %}
+
+{% endblock %}
+
+{% block content %}
+
+
+        <div class="widget">
+            <h2>Active Seasons</h2>
+            <div class="widget_content_wrapper">
+                <ul class="game_list season_list">
+                    {% for season in season_list %}
+                        <li><a href="{% url 'picker:season_detail' pk=season.id %}"> {{ season }} </a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <!-- TODO: Passed Seasons -->
+    </div>
+
+{% endblock %}

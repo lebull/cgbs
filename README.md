@@ -8,16 +8,12 @@ Priority Todo
 * User Detail
   * List User's Pick History
 
-* Team Detail
-  * List passed/upcomming games
-
-* Pick Grid
-
 * Registration
   * Extend forms:
     * Register
     * Login
     * Change Password
+  * Reimplement Email or remove it from the form
   * Registration Captcha?
 
 * Styling
@@ -25,5 +21,14 @@ Priority Todo
 
 Stretch Todo
 ------------
+* Team Detail
+  * List passed/upcomming games
+  
+
 * Utilize team colors when displaying
+
+
+Known Issues
+------------
+* Season in the season grid view has no name.  Weird...
 

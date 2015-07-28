@@ -6,16 +6,24 @@ class PickForm(forms.ModelForm):
     
     class Meta:
         model = Pick
-        fields = ('game', 'winner', 'funny_winner_name', 'funny_looser_name')
+        fields = ('game', 'winner')
     
     def __init__(self, *args, **kwargs):
-        if 'game' in kwargs:
-            game = kwargs.pop('game')
-            super(PickForm, self).__init__(*args, **kwargs)
-            
-            choices = [(game.away_team.id, game.away_team), (game.home_team.id, game.home_team)]
-            self.fields['winner'].widget = forms.RadioSelect(choices=choices)
-            self.fields['game'].widget = forms.HiddenInput(attrs={'value':game.id})
-        else:
-            super(PickForm, self).__init__(*args, **kwargs)
-    
+        game = kwargs.pop('game', None)
+        winner = kwargs.pop('winner', None)
+        
+        return_value = super(PickForm, self).__init__(*args, **kwargs)
+        
+        if game:
+            self.fields['game'].widget = forms.HiddenInput(attrs={'value': game.id})
+        if winner:
+            self.fields['winner'].widget = forms.HiddenInput(attrs={'value': winner.id})
+        
+        return return_value
+
+    #     self.fields['winner'].widget = forms.HiddenInput(attrs={'value':team.id})
+    #     self.fields['game'].widget = forms.HiddenInput(attrs={'value':game.id})
+        
+    #     return return_value
+
+

@@ -19,35 +19,44 @@
 
     <table class="pick_grid">
         
-        <tr>
-                <th></th>
-                
-                {% for user in users %}
-                <th>
-                    {{ user }}
-                </th>
-                {% endfor %}
-        </tr>
+
         
-        {% for game in games %}
-        
-            <tr>
-                <th>
-                    <a href="{% url 'picker:game_detail' game.id %}" class="fancy_button">{{ game }}</a>
-                </th>
+            {% for week, week_of_games in games.items %}
                 
-                {% for user in users %}
+                <tr><th colspan="{{ users|length|add:1 }}"> Week {{ week }} </th></tr>
                 
-                    {% with game|get_game_pick_by_author:user as user_pick %}
-                        {% ifequal user_pick.winner game.winner %}
-                            <td class="good_pick">{{ user_pick.winner.abreviation }}</td>
-                        {% else %}
-                            <td class="bad_pick">{{ user_pick.winner.abreviation }}</td>
-                        {% endifequal %}
-                    {% endwith %}
+                <tr>
+                    <th></th>
+                    
+                    {% for user in users %}
+                        <th>
+                            {{ user }}
+                        </th>
+                    {% endfor %}
+                </tr>
+                
+                {% for game in week_of_games %}
+                
+                    <tr>
+                        <th>
+                            <a href="{% url 'picker:game_detail' game.id %}" class="fancy_button">{{ game }}</a>
+                        </th>
+                    
+                    {% for user in users %}
+                        
+                        {% with game|get_game_pick_by_author:user as user_pick %}
+                            {% ifequal user_pick.winner game.winner %}
+                                <td class="good_pick">{{ user_pick.winner.abreviation }}</td>
+                            {% else %}
+                                <td class="bad_pick">{% firstof user_pick.winner.abreviation 'X' %}</td>
+                            {% endifequal %}
+                        {% endwith %}
+                    
+                    {% endfor %}
+                    
                 {% endfor %}
                 
             </tr>
         {% endfor %}
-        </table>
+    </table>
 {% endblock %}

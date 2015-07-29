@@ -52,6 +52,7 @@ button:hover{
 
 #content_wrapper{
     padding: 10px 30px 30px;
+    overflow:hidden;
 }
 
 #breadcrumb_bar{
@@ -66,17 +67,6 @@ button:hover{
     margin: 0px 5px;
 }
 
-.notice{
-    display: block;
-    border: solid thin #AAA;
-    background-color: #EEE;
-    padding: 10px 10px;
-    margin: 10px 10px;
-    text-align: center;
-    font-style: italic;
-    font-size: 18px;
-    color: #888;
-}
 
 .page_title{
     text-shadow: 0 0 5px #000;
@@ -99,6 +89,15 @@ button:hover{
     vertical-align: top;
     text-align: center;
     min-width: 300px;
+}
+
+.text_body{
+    display: inline-block;
+}
+
+.text_body aside{
+    opacity: 0.5;
+    text-align: right;
 }
 
 .fancy_button{
@@ -130,6 +129,8 @@ button:hover{
 
     box-shadow: 0px 5px 6px #999;
     text-align: left;
+    
+    margin-top: 10px;
 }
 
 .widget .widget_content_wrapper{
@@ -233,6 +234,12 @@ button:hover{
     float: right;
 }
 
+.pick_list_lite{
+    background-color: #FFF;
+    border: solid thin #888;
+    padding: 15px 15px;
+}
+
 .season_list{
     font-size: 24px;
 }
@@ -251,6 +258,12 @@ button:hover{
     width: 49%;
 }
 
+
+.pick_form .active_pick {
+    text-decoration: underline;
+}
+
+
 .pick_form input[type=submit]{
     
   background: #e82525;
@@ -266,26 +279,20 @@ button:hover{
   color: #F8F8F8;
   font-size: 24px;
   padding: 10px 20px 10px 20px;
-  text-decoration: none;
-  
+  /*text-decoration: None;*/
   width: 100%;
 }
-
-.pick_form .fancy_button .active_pick{
-    text-decoration: underline;
-}
-
 
 .pick_form input[type=submit]:hover{
     cursor:pointer;
     background: #f57878;
 }
 
+
 .pick_grid{
     border-collapse: collapse;
     margin-left: auto;
     margin-right: auto;
-    
 }
 
 .pick_grid td, th{
@@ -313,20 +320,42 @@ button:hover{
     border-radius: 0px;
 }
 
-.pick_grid .good_pick{
-    color: #86C98A;    
+.pick_grid .bad_pick{
+
 }
 
-.pick_grid .bad_pick{
-    color: #FFB6AA;
-}
 /*generic*/
+
+.notice{
+    display: block;
+    border: solid thin #AAA;
+    background-color: #F8F8F8;
+    padding: 10px 10px;
+    margin: 10px 10px;
+    text-align: center;
+    font-style: italic;
+    font-size: 18px;
+    color: #888;
+}
+
+.good_pick, .bad_pick{
+    text-shadow: 1px 1px 3px #CCC;
+}
+
+.good_pick{
+    color: #7AAA7C;
+}
+
+.bad_pick{
+    color: #D19D94;
+    text-decoration: line-through;
+}
+
 .timestamp{
     opacity: 0.5;
     font-size: 12px;
     letter-spacing: -0.5px;
 }
-
 
 /*slimmenu customizations*/
 
@@ -359,8 +388,12 @@ ul.slimmenu li a:hover{
 /*http://paletton.com/#uid=13-0u0kbUKy2QZd7jTigl-ikusS*/
 
 
-@media screen and (max-width: 625px) {
+@media screen and (max-width: 1000px) {
     .content_wrapper{
         
+    }
+    
+    .page_column{
+        width: 100%;
     }
 }

@@ -35,7 +35,6 @@
             {% ifequal game|can_user_pick:user True %}
             
                 <div class="widget_content_wrapper">
-                    <span>The winner will be - </span>
                     <div class="pick_form">
                         <form  method="POST" action="{% url 'picker:pick_submit' %}">
                             {% csrf_token %}

@@ -21,7 +21,20 @@
     <span class="game_date">{%firstof game.kickoff_time|date:"Y-m-d H:i" 'TBA'%}</span>
     
     {% if user.is_authenticated %}
-    <span class="pick">{{ game|get_game_pick_by_author:user }} Picked</span>
+        
+        {% with game|get_game_pick_by_author:user as pick %}
+    
+    
+        <span class="pick
+            {% ifequal game.winner.id pick.winner.id %}
+                good_pick
+            {% else %}
+                bad_pick
+            {% endifequal %}">
+            {{ pick }} Picked
+        </span>
+        
+        {% endwith %}
     {% endif %}
 
     </li>

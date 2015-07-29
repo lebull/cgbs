@@ -139,7 +139,16 @@ class GridView(TemplateView):
 
         context_data = {}
         context_data['season'] = season
-        context_data['games'] = season.game_set.filter(complete=True)
+        
+        context_data['games'] = {}
+        
+        for game in season.game_set.filter(complete=True):
+            try:
+                context_data['games'][game.week].append(game)
+            except KeyError:
+                context_data['games'][game.week] = [game]
+                
+        
         context_data['users'] = season.users.all()
         return context_data
 @login_required

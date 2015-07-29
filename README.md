@@ -17,27 +17,31 @@ Priority Todo
   * List User's Pick History
 
 * Registration
-  * Extend forms:
-    * Register
-    * Login
-    * Change Password
-  * Reimplement Email or remove it from the form
-  * Registration Captcha?
+ * Extend forms:
+  * Register
+  * Login
+  * Change Password
+ * Extend Templates
+  * Registration Complete
+ * Reimplement Email or remove it from the form
+ * Registration Captcha?
 
 * Styling
-  * Media Screen adjustment for small/mobile screens.
-  * Forms
-  * favicon.ico
+ * Media Screen adjustment for small/mobile screens.
+ * Forms
+ * favicon.ico
 
 Stretch Todo
 ------------
-* Team Detail
-  * List passed/upcomming games
+*AJAXify game picking
+ *Pick many games on one page
   
 * Utilize team colors when displaying
-* Front Page News (via another blog app?)
+* Blogify Front Page News 
 
-
+* Team Detail
+ * List passed/upcomming games
+ * 
 Known Issues
 ------------
 * Season in the season grid view has no name.  Weird...

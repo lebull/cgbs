@@ -43,6 +43,7 @@ class AjaxableResponseMixin(object):
         else:
             return response
 
+
 class LoginRequiredMixin(object):
     @classmethod
     def as_view(cls, **initkwargs):
@@ -151,6 +152,8 @@ class GridView(TemplateView):
         
         context_data['users'] = season.users.all()
         return context_data
+        
+        
 @login_required
 def join_season(request):
     """

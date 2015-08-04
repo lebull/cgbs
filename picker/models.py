@@ -60,8 +60,6 @@ class Season(models.Model):
         
         return result
 
-        
-    
     def __unicode__(self):
         return str(self.name)
         
@@ -91,7 +89,6 @@ class Team(models.Model):
         return wins, losses
     record = property(get_record)
 
-    
     def __unicode__(self):
         return self.name
 
@@ -112,6 +109,8 @@ class Game(models.Model):
     away_score = models.IntegerField(null=True, blank=True)
     home_score = models.IntegerField(null=True, blank=True)
     
+    location = models.CharField(null=True, blank=True, max_length="50")
+    
     
     def get_winner(self):
         if self.complete == True:
@@ -123,7 +122,7 @@ class Game(models.Model):
     get_winner.description = 'Winner'
     winner = property(get_winner)
     
-        #TODO: Create a manager, and create a get_pickable method.
+    #TODO: Create a manager, and create a get_pickable method.
     #Keep this here, though.  Refactor to pickable
     def can_pick(self):
         if self.week == self.season.current_week:
@@ -241,14 +240,6 @@ class Pick(models.Model):
     winner = models.ForeignKey(Team)
     
     timestamp = models.DateTimeField(default=timezone.now())
-    
-    funny_winner_name = models.CharField(max_length=128, null=True, blank=True)
-    funny_looser_name = models.CharField(max_length=128, null=True, blank=True)
-    
-    # class Meta:
-    #     #get_latest_by = 'timestamp'
-    #     #get_latest_by = 'id'
-        
     
     def __unicode__(self):
         return str(self.winner.name)    

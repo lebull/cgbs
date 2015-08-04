@@ -57,7 +57,7 @@ button:hover{
 
 #breadcrumb_bar{
     color:#AAA;
-    background-color: #333;
+    background-color: #222;
     padding: 5px 20px;
     border: solid 1px #111;
 }
@@ -71,7 +71,7 @@ button:hover{
 .page_title{
     text-shadow: 0 0 5px #000;
     color: #FFF;
-    background-color: #888;
+    background-color: #35421F;
     padding: 5px 50px;
     margin: 0px;
 }
@@ -124,7 +124,6 @@ button:hover{
 .widget{
     display:inline-block;
     vertical-align: top;
-    min-width: 300px;
     width: 100%;
 
     box-shadow: 0px 5px 6px #999;
@@ -206,7 +205,6 @@ button:hover{
     background-color: #F8F8F8;
     box-shadow: inset 0 0 6px #DDD;
     border: None;
-    
 
 }
 
@@ -236,7 +234,7 @@ button:hover{
 
 .pick_list_lite{
     background-color: #FFF;
-    border: solid thin #888;
+    /*border: solid thin #888;*/
     padding: 15px 15px;
 }
 
@@ -364,36 +362,120 @@ button:hover{
 
 }
 
+.slimmenu_wrapper{
+
+}
+
 ul.slimmenu {
     /*changes by lebull*/
     text-align: right;
     border: solid thin black;
-    border-width: 0px 0px 1px 0px;
+    border-width: 0px 0px 0px 0px;
     background-color: #AAA;
-
+    
+background: rgba(164,179,87,1);
+background: -moz-linear-gradient(left, rgba(164,179,87,1) 0%, rgba(164,179,87,1) 7%, rgba(117,137,12,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(164,179,87,1)), color-stop(7%, rgba(164,179,87,1)), color-stop(100%, rgba(117,137,12,1)));
+background: -webkit-linear-gradient(left, rgba(164,179,87,1) 0%, rgba(164,179,87,1) 7%, rgba(117,137,12,1) 100%);
+background: -o-linear-gradient(left, rgba(164,179,87,1) 0%, rgba(164,179,87,1) 7%, rgba(117,137,12,1) 100%);
+background: -ms-linear-gradient(left, rgba(164,179,87,1) 0%, rgba(164,179,87,1) 7%, rgba(117,137,12,1) 100%);
+background: linear-gradient(to right, rgba(164,179,87,1) 0%, rgba(164,179,87,1) 7%, rgba(117,137,12,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a4b357', endColorstr='#75890c', GradientType=1 );
+/*http://www.cssmatic.com/gradient-generator#'\-moz\-linear\-gradient\%28left\%2C\%20rgba\%28164\%2C179\%2C87\%2C1\%29\%200\%25\%2C\%20rgba\%28164\%2C179\%2C87\%2C1\%29\%207\%25\%2C\%20rgba\%28117\%2C137\%2C12\%2C1\%29\%20100\%25\%29\%3B'*/
 }
 
 ul.slimmenu li{
     width:180px;
     text-align: left;
+    background: None;
+    border: None;
+    
 }
 
 ul.slimmenu li a{
     text-decoration: none;
+    color: #DDD;
 }
 
 ul.slimmenu li a:hover{
+    background-color: #657232;
+}
 
+ul.slimmenu li ul li{
+    background-color: #75890c;
+}
+
+.menu-collapser{
+    background-color:#75890c;
+}
+
+/*
+.slimmenu_wrapper .logo{
+    float:left;
+    background-color: #657232;
+    height: 23px;
+    margin-top: 5px;
+    margin-left: 15px;
+    padding: 5px;
+    border: solid 4px #222;
+    box-shadow: 2px 2px 5px #333;
+    
+}*/
+
+.slimmenu_wrapper_hide{
+    top: -43px;
+}
+
+.slimmenu_wrapper_show{
+    
 }
 /*http://paletton.com/#uid=13-0u0kbUKy2QZd7jTigl-ikusS*/
 
 
 @media screen and (max-width: 1000px) {
-    .content_wrapper{
-        
+    
+    body{
+        min-width: 300px;
+    }
+    
+    #page_wrapper{
+        width: 95%;
+        padding-top: 43px;
+    }
+    
+    #content_wrapper{
+        padding: 0px;
+        margin: 0px;
+        width: 100%;
+
+        background-color: #EEE;
     }
     
     .page_column{
         width: 100%;
+    }
+    
+    .widget{
+        box-shadow: None;
+    }
+    
+    .game_list .winner{
+        display: block;
+        float: None;
+    }
+    
+    .game_list .pick{
+        display: block;
+        float: None;
+    }
+    
+    /*http://jsfiddle.net/mariusc23/s6mLJ/31/*/
+    
+    .slimmenu_wrapper{
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        transition: top 0.2s ease-in-out;
     }
 }

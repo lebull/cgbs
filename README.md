@@ -17,32 +17,36 @@ Priority Todo
   * List User's Pick History
 
 * Registration
- * Extend forms:
+ * Change Templates:
   * Register
   * Login
   * Change Password
- * Extend Templates
-  * Registration Complete
- * Reimplement Email or remove it from the form
- * Registration Captcha?
+
 
 * Styling
- * Media Screen adjustment for small/mobile screens.
  * Forms
  * favicon.ico
+ * Every page has a heiarchy of information.  Focus on higher bits, and fill in with lesser bits.
+
+ * Project Layout:
+  * The breadcrumbs are split across an app and the root static.  That's bad.
 
 Stretch Todo
 ------------
 *AJAXify game picking
  *Pick many games on one page
-  
+
+*User Preferences
+    *Display Name
+
 * Utilize team colors when displaying
 * Blogify Front Page News 
 
 * Team Detail
  * List passed/upcomming games
- * 
+ 
 Known Issues
 ------------
 * Season in the season grid view has no name.  Weird...
+* Error when joining season.  Looks like it is the redirect.
 

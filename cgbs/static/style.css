@@ -1,0 +1,456 @@
+@font-face{
+    font-family: 'PT_Sans';
+    src: url('/static/webfont/PTC55F.ttf') format('truetype');
+}
+
+html, body{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'PT_Sans' arial;
+    font-weight: 300;
+    color:#333;
+}
+
+body{
+    background-color: #EEE;
+background: rgba(235,235,235,1);
+background: -moz-linear-gradient(top, rgba(235,235,235,1) 0%, rgba(250,250,250,0.64) 36%, rgba(255,255,255,0) 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(235,235,235,1)), color-stop(36%, rgba(250,250,250,0.64)), color-stop(100%, rgba(255,255,255,0)));
+background: -webkit-linear-gradient(top, rgba(235,235,235,1) 0%, rgba(250,250,250,0.64) 36%, rgba(255,255,255,0) 100%);
+background: -o-linear-gradient(top, rgba(235,235,235,1) 0%, rgba(250,250,250,0.64) 36%, rgba(255,255,255,0) 100%);
+background: -ms-linear-gradient(top, rgba(235,235,235,1) 0%, rgba(250,250,250,0.64) 36%, rgba(255,255,255,0) 100%);
+background: linear-gradient(to bottom, rgba(235,235,235,1) 0%, rgba(250,250,250,0.64) 36%, rgba(255,255,255,0) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebebeb', endColorstr='#ffffff', GradientType=0 );
+    /*background-image: url('/static/images/Mississippi State 2.png');*/
+}
+
+hr {
+    margin: 0px;
+    padding: 0px;
+    border: solid thin #AAA;
+    border-width: 1px 0px 0px 0px;
+}
+
+button{
+    background: none;
+    border: none;
+    color: #EEE;
+    background-color: #111;
+    font-size: 18px;
+    padding: 5px 25px;
+    border-radius: 15px;
+}
+
+button:hover{
+    background-color: #333;
+    cursor: pointer;
+}
+
+#page_wrapper{
+    width: 80%;
+    margin-left:auto;
+    margin-right:auto;
+    
+    /*
+    border: solid thin #666666;
+    border-width: 0px 1px 1px;
+    box-shadow: 3px 5px 8px #000000;*/
+}
+
+#content_wrapper{
+    overflow:hidden;
+}
+
+#breadcrumb_bar{
+    color:#BBB;
+    padding: 10px 40px;
+    text-shadow: 1px 1px 3px #BBB;
+    border-bottom: solid 1px #D8D8D8;
+}
+
+#breadcrumb_bar a{
+    color: #999;
+    margin: 0px 5px;
+}
+
+
+.page_title{
+    padding: 0px 0px;
+    margin: 0px;
+    margin-top: 10px;
+}
+
+.page_column_wrapper{
+    text-align: center;
+    padding: None;
+    padding: 0px 10px;
+    margin: None;
+    
+    
+}
+
+.page_column{
+    width: 49%;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    min-width: 300px;
+}
+
+.text_body{
+    display: inline-block;
+}
+
+.text_body aside{
+    opacity: 0.5;
+    text-align: right;
+}
+
+.fancy_button{
+    background: #e82525;
+   
+    border-radius: 28px;
+    border: None;
+    text-shadow: 1px 1px 2px #666666;
+    color: #F8F8F8;
+    font-size: 24px;
+    padding: 5px 20px;
+    text-decoration: none;
+    
+    width: 100%;
+}
+
+.fancy_button:hover{
+    background: #CE1B1B;
+    cursor: pointer;
+}
+
+/*snippits*/
+
+.widget{
+    display:inline-block;
+    vertical-align: top;
+    width: 100%;
+
+    text-align: left;
+    margin-top: 10px;
+    
+
+}
+
+.widget .widget_content_wrapper{
+    padding: 10px;
+
+    /*border-width: 0px 1px 1px 1px;*/
+}
+
+.widget h2{
+
+    margin: 0px;
+    padding: 3px 6px;
+    font-size: 18px;
+}
+
+.widget h3{
+    font-size: 18px;
+    margin: 0;
+    padding: 10px 0 3px 25px;
+    color: #666;
+    font-weight: 300;
+    font-size: 12px;
+}
+
+.widget p{
+    margin: 10px 25px;
+}
+
+.widget ul{
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.widget li{
+
+    border: solid thin #CCC;
+    border-width: 0px 0px 1px 0px;
+    padding: 5px 5px;
+}
+
+.widget form{
+    margin-bottom: None;
+    padding: None;
+}
+
+
+.game_list{
+     list-style-type: none;
+     padding-left:0;
+}
+
+.game_list a{
+    color: #000;
+}
+
+.game_list a: hover{
+    
+    
+}
+
+.game_list li{
+    display: block;
+    /*margin-left: 15px;*/
+    /*border: solid thin #333;*/
+    
+    margin: 5px 0px;
+    padding: 5px 10px;
+    vertical-align: middle;
+
+
+    border-bottom: solid thin #DDD;
+
+}
+
+.game_list li:hover{
+
+    box-shadow: inset 0 0 8px #888;
+}
+
+.game_list .game_date{
+    opacity: 0.5;
+    font-size: 12px;
+    font-style: italic;
+    padding-right: 5px;
+}
+
+.game_list .winner{
+    float: right;
+}
+
+.game_list .pick{
+    opacity: 0.5;
+    font-size: 12px;
+    font-style: italic;
+    padding-right: 5px;
+    float: right;
+}
+
+.pick_list_lite{
+    /*border: solid thin #888;*/
+    padding: 15px 15px;
+}
+
+.season_list{
+    font-size: 24px;
+}
+
+.season_list li{
+    padding: 5px 5px;
+    padding-left: 25px;
+}
+
+.pick_form{
+    text-align: center;
+}
+
+.pick_form form{
+    display: inline-block;    
+    width: 49%;
+}
+
+
+.pick_form .active_pick {
+    text-decoration: underline;
+}
+
+
+.pick_grid{
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pick_grid td, th{
+    padding: 5px 5px;
+    margin: None;
+    border: 1px solid #666;
+}
+
+.pick_grid td{
+    text-align:center;
+}
+
+.pick_grid th{
+    color: #333;
+    font-size: 20px;
+    font-weight: 300;
+    padding: 5px 5px;
+}
+
+.pick_grid .fancy_button{
+    padding: 4px 2px;
+    margin: 0px 0px 0px 0px;
+    display: block;
+    width: 100%;
+    border-radius: 0px;
+}
+
+.pick_grid .bad_pick{
+
+}
+
+/*generic*/
+
+.notice{
+    display: block;
+    padding: 10px 10px;
+    margin: 10px 10px;
+    text-align: center;
+    font-style: italic;
+    font-size: 18px;
+    color: #888;
+}
+
+.good_pick, .bad_pick{
+    text-shadow: 1px 1px 3px #CCC;
+}
+
+.good_pick{
+    color: #7AAA7C;
+}
+
+.bad_pick{
+    color: #D19D94;
+    text-decoration: line-through;
+}
+
+.timestamp{
+    opacity: 0.5;
+    font-size: 12px;
+    letter-spacing: -0.5px;
+}
+
+/*slimmenu customizations*/
+
+.collapse-button:hover, .collapse-button:focus {
+
+
+}
+
+.slimmenu_wrapper{
+    z-index: 1;
+    box-shadow: 0px 5px 10px #888;
+}
+
+ul.slimmenu {
+    /*changes by lebull*/
+    text-align: right;
+    border: solid thin black;
+    border-width: 0px 0px 0px 0px;
+    background-color: #AAA;
+    
+background: rgba(164,179,87,1);
+background: -moz-linear-gradient(left, rgba(164,179,87,1) 0%, rgba(164,179,87,1) 7%, rgba(117,137,12,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(164,179,87,1)), color-stop(7%, rgba(164,179,87,1)), color-stop(100%, rgba(117,137,12,1)));
+background: -webkit-linear-gradient(left, rgba(164,179,87,1) 0%, rgba(164,179,87,1) 7%, rgba(117,137,12,1) 100%);
+background: -o-linear-gradient(left, rgba(164,179,87,1) 0%, rgba(164,179,87,1) 7%, rgba(117,137,12,1) 100%);
+background: -ms-linear-gradient(left, rgba(164,179,87,1) 0%, rgba(164,179,87,1) 7%, rgba(117,137,12,1) 100%);
+background: linear-gradient(to right, rgba(164,179,87,1) 0%, rgba(164,179,87,1) 7%, rgba(117,137,12,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a4b357', endColorstr='#75890c', GradientType=1 );
+/*http://www.cssmatic.com/gradient-generator#'\-moz\-linear\-gradient\%28left\%2C\%20rgba\%28164\%2C179\%2C87\%2C1\%29\%200\%25\%2C\%20rgba\%28164\%2C179\%2C87\%2C1\%29\%207\%25\%2C\%20rgba\%28117\%2C137\%2C12\%2C1\%29\%20100\%25\%29\%3B'*/
+}
+
+ul.slimmenu li{
+    width:180px;
+    text-align: left;
+    background: None;
+    border: None;
+    
+}
+
+ul.slimmenu li a{
+    text-decoration: none;
+    color: #FFF;
+    text-shadow: 1px 1px 4px #AAA;
+}
+
+ul.slimmenu li a:hover{
+    background-color: #657232;
+}
+
+ul.slimmenu li ul li{
+    background-color: #75890c;
+}
+
+.menu-collapser{
+    background-color:#75890c;
+}
+
+/*
+.slimmenu_wrapper .logo{
+    float:left;
+    background-color: #657232;
+    height: 23px;
+    margin-top: 5px;
+    margin-left: 15px;
+    padding: 5px;
+    border: solid 4px #222;
+    box-shadow: 2px 2px 5px #333;
+    
+}*/
+
+.slimmenu_wrapper_hide{
+    top: -43px;
+}
+
+.slimmenu_wrapper_show{
+    
+}
+/*http://paletton.com/#uid=13-0u0kbUKy2QZd7jTigl-ikusS*/
+
+
+@media screen and (max-width: 1000px) {
+    
+    body{
+        min-width: 300px;
+    }
+    
+    #page_wrapper{
+        width: 95%;
+        padding-top: 43px;
+    }
+    
+    #content_wrapper{
+        padding: 0px;
+        margin: 0px;
+        width: 100%;
+    }
+    
+    .page_column{
+        width: 100%;
+    }
+    
+    .widget{
+        box-shadow: None;
+    }
+    
+    .game_list .winner{
+        display: block;
+        float: None;
+    }
+    
+    .game_list .pick{
+        display: block;
+        float: None;
+    }
+    
+    /*http://jsfiddle.net/mariusc23/s6mLJ/31/*/
+    
+    .slimmenu_wrapper{
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        transition: top 0.2s ease-in-out;
+    }
+}

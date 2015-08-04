@@ -18,8 +18,8 @@
 
 <body>
     {% include 'slimmenu.html' %}
+    <div id="breadcrumb_bar"><div id="page_wrapper">{% block breadcrumbs %}{% endblock %}</div></div>
     <div id="page_wrapper">
-        <div id="breadcrumb_bar">{% block breadcrumbs %}{% endblock %}</div>
         
         {% block page_title %}
         {% endblock %}

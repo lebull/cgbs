@@ -47,7 +47,7 @@ PROJECT_APPS = [
     'cgbs'
 ]
 
-INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS
+INSTALLED_APPS = PROJECT_APPS + PREREQ_APPS
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

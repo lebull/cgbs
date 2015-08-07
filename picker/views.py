@@ -8,6 +8,8 @@ from django.contrib.auth.decorators import login_required
 from forms import PickForm
 from models import Game, Pick, Season
 
+import json
+
 register = template.Library()
 
 class AjaxableResponseMixin(object):

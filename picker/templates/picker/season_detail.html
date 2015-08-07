@@ -1,82 +1,70 @@
 {% extends 'base.html' %}
 
 {% block head %}
-{% endblock %}
 
-{% block breadcrumbs %}
-    <a href="{% url 'index' %}">CGBS</a> - 
-    <a href="{% url 'picker:season_detail' season.id %}">{{ season }}</a>
-{% endblock %}
-
-{% block page_title %}
-    <h1 class="page_title">{{ season }} - Week {{ season.current_week }}</h1>
 {% endblock %}
 
 {% block content %}
 
-    <div class="page_column_wrapper">
+    <h1 class="page_title">{{ season }} - Week {{ season.current_week }}</h1>
+
+    <!-- Left Column -->
+    <section class="grid left">
         
-        <!-- Left Column -->
-        <div class="page_column">
-            
-            <div class="widget">
-                <h2>Season Details</h2>
-                <div class="widget_content_wrapper">
-                    <ul>
-
-                        <li>Name - {{ season.name }}</li>
-
-                        <li>Number of Users - {{ season.users.all|length }}</li>
-
-                        <li>Active - {{ season.active }}</li>
-
-                    </ul>
-                </div>
+        <div class="widget">
+            <h2>Season Details</h2>
+            <div>
+                <ul>
+                    <li>Name - {{ season.name }}</li>
+                    <li>Number of Users - {{ season.users.all|length }}</li>
+                    <li>Active - {{ season.active }}</li>
+                </ul>
             </div>
-            
+        </div>
+        
+
+        {% if not request.user in season.users.all %}
+            {% include 'picker/snippits/join_season.html' with season=season %}
+        {% endif %}
+        
+        <div class="widget">
+            <h2>Users in this season</h2>
+            <div>
+                {% include 'picker/snippits/season_user_record_list.html' %}
+            </div>
+        </div>
+        
+        <div class="widget">
+            <div style="text-align: center;">
+                <a href="{% url 'picker:grid' season.id %}" class="fancy_button">View Pick Grid</a>
+            </div>
+        </div>
+        
+    </section>
     
-            {% if not request.user in season.users.all %}
-                {% include 'picker/snippits/join_season.html' with season=season %}
-            {% endif %}
-            
+    <!-- Right Column -->
+    <section class="grid right">
+        {% if passed_games %}
             <div class="widget">
-                <h2>Users in this season</h2>
-                <div class="widget_content_wrapper">
-                    {% include 'picker/snippits/season_user_record_list.html' %}
+            <h2>Passed Games</h2>
+                <div>
+                    {% for week_number, week_of_games in passed_games.items %}
+                        <h3>Week {{ week_number }}</h3>
+                        {% include 'picker/snippits/game_list.html' with game_list=week_of_games user=request.user only %}
+                    {% endfor %}
                 </div>
             </div>
-            
-            <div class="widget">
-                <div class="widget_content_wrapper" style="text-align: center;">
-                    <a href="{% url 'picker:grid' season.id %}" class="fancy_button">View Pick Grid</a>
-                </div>
+        {% endif %}
+    </section>
+    
+    <section class="grid middle">
+        <div class="widget">
+            <h2>This Week's Games</h2>
+            <div>
+                {% include 'picker/snippits/pick_form_lite.html' with game_list=this_weeks_games %}
             </div>
-            
         </div>
-        
-        <!-- Right Column -->
-        <div class="page_column">
-            
-            <div class="widget">
-                <h2>This Week's Games</h2>
-                <div class="widget_content_wrapper">
-                <h3>Week {{ season.current_week }}</h3>
-                {% include 'picker/snippits/game_list.html' with game_list=this_weeks_games user=request.user only %}
-                </div>
-            </div>
-            
-            {% if passed_games %}
-                <div class="widget">
-                <h2>Passed Games</h2>
-                    <div class="widget_content_wrapper">
-                        {% for week_number, week_of_games in passed_games.items %}
-                            <h3>Week {{ week_number }}</h3>
-                            {% include 'picker/snippits/game_list.html' with game_list=week_of_games user=request.user only %}
-                        {% endfor %}
-                    </div>
-                </div>
-            {% endif %}
-        </div>
-    </div>
+    </section>
+
 
 {% endblock %}

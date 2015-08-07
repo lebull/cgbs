@@ -13,6 +13,12 @@ College Gameday Board of Science began in the depths of bay 6 of MSSC.
 Priority Todo
 -------------
 
+*pick_form_lite line 2
+
+*Depricate the grid
+
+*Create user_pick_history snippit
+
 * User Detail
   * List User's Pick History
 
@@ -21,7 +27,6 @@ Priority Todo
   * Register
   * Login
   * Change Password
-
 
 * Styling
  * Forms
@@ -33,8 +38,6 @@ Priority Todo
 
 Stretch Todo
 ------------
-*AJAXify game picking
- *Pick many games on one page
 
 *User Preferences
     *Display Name

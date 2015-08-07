@@ -1,0 +1,60 @@
+{% for game in game_list %}
+    <!-- TODO: Merge to one form with two BUTTONS.  Find game by hidden field, 
+    find pick by... make up something.  Have text to the side indicating winner. -->
+    <ul>
+        <li>
+            <form class="pick_form_lite">
+                {% csrf_token %}
+                <input type="hidden" name="game" value="{{ game.pk }}"/>
+                <input type="hidden" name="winner" value="{{ game.away_team.pk }}"/>
+                <input type="submit" value="{{game.away_team}}"/>
+            </form>
+            
+            <form class="pick_form_lite">
+                {% csrf_token %}
+                <input type="hidden" name="game" value="{{ game.pk }}"/>
+                <input type="hidden" name="winner" value="{{ game.home_team.pk }}"/>
+                <input type="submit" value="{{game.home_team}}"/>
+            </form>
+        </li>
+    </ul>
+    
+{% endfor %}
+
+<script>
+
+    $(document).ready(function(){
+        
+        
+        $('.pick_form_lite').on('submit', function(event){
+            event.preventDefault();
+            console.log("form submitted!")  // sanity check
+            game= $(this).find("input:hidden[name=game]" ).val();
+            winner=$(this).find("input:hidden[name=winner]" ).val();
+            csrf_token=$(this).find("input:hidden[name=csrfmiddlewaretoken]").val();
+            pickGame(game, winner, csrf_token);
+        });
+        
+        function pickGame(game_pk, game_winner, csrf_token){
+            
+            form_data = {}
+            form_data['game'] = game_pk
+            form_data['winner'] = game_winner
+            form_data['csrfmiddlewaretoken'] = csrf_token
+            
+            console.log("csrf_token: " + csrf_token)
+            
+            $.ajax({
+                url: "/picker/pick_submit/",
+                type: "POST",
+                data: form_data
+            })
+            .done(function(response){ alert("Game Picked: " + response); })
+            .success(function(response){alert("Game Pick Success: " + response)})
+            .fail(function(response){alert("Problem picking game: " + response);})
+            .always(function(){});
+        }
+    });
+    
+</script>
+

@@ -21,6 +21,7 @@ Priority Todo
 
  *Game detail revamp
   *Fancy jquery widget to show pick proportion?
+  
    *http://p.ar2oor.pl/cprogress/
    *http://designscrazed.org/jquery-css3-progress-bars/
 
@@ -43,6 +44,19 @@ Stretch Todo
  
 Known Issues
 ------------
-* Season in the season grid view has no name.  Weird...
-* Error when joining season.  Looks like it is the redirect.
+I probably shouldn't have mentioned that the picks aren't validated.
+
+Development Console
+-------------------
+
+Development is hosted on Cloud9 IDE.
+
+https://ide.c9.io/lebull/cgbs
+
+Source
+------
+
+Source is hosted by github.
+
+https://github.com/lebull/cgbs
 

@@ -42,6 +42,7 @@ urlpatterns = patterns('',
 
     
     url(r'^$', SeasonListView.as_view(), name='index'),
+
     
     # When you make your registration forms...
     # http://stackoverflow.com/questions/6414926/how-to-use-different-form-in-django-registration

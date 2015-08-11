@@ -19,15 +19,3 @@ def get_game_pick_by_author(value, arg):
         return pick
     else:
         return None
-
-@register.filter
-def get_season_user_record(value, arg):
-    season = value
-    user = arg
-    
-    record = season.get_user_record(user)
-    if record:
-        return record
-    else:
-        return None
-    

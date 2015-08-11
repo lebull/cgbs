@@ -1,19 +1,7 @@
 {% load picker_extras %}
-{% if season %}
-    <ol class="user_list">
-    {% for user in season.users.all %}
-    
-        <li>
-        
-        {{ user }}
-        {% with season|get_season_user_record:user as record %}
-            ({{ record.0 }} - {{ record.1 }})
-        {% endwith %}
 
-        </li>
-    
-    {% endfor %}
-    </ol>
-{% else %}
-    <span class="error">Template Error</span>
-{% endif %}
+<ol class="user_list">
+{% for user, record in season.get_all_user_records %}
+    <li>{{ user }} ({{ record.0 }} - {{ record.1 }})</li>
+{% endfor %}
+</ol>

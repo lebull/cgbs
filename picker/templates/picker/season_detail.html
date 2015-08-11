@@ -15,31 +15,18 @@
             <h2>Season Details</h2>
             <div>
                 <ul>
-                    <li>Name - {{ season.name }}</li>
-                    <li>Number of Users - {{ season.users.all|length }}</li>
-                    <li>Active - {{ season.active }}</li>
+                    <li>Number of Users: {{ season.users.all|length }}</li>
+                    <li>Active: {{ season.active }}</li>
                 </ul>
             </div>
         </div>
         
-
-        {% if not request.user in season.users.all %}
-            {% include 'picker/snippits/join_season.html' with season=season %}
-        {% endif %}
-        
         <div class="widget">
-            <h2>Users in this season</h2>
+            <h2>Leaderboard</h2>
             <div>
                 {% include 'picker/snippits/season_user_record_list.html' %}
             </div>
         </div>
-        
-        <div class="widget">
-            <div style="text-align: center;">
-                <a href="{% url 'picker:grid' season.id %}" class="fancy_button">View Pick Grid</a>
-            </div>
-        </div>
-        
     </section>
     
     <!-- Right Column -->
@@ -58,12 +45,14 @@
     </section>
     
     <section class="grid middle">
-        <div class="widget">
-            <h2>This Week's Games</h2>
-            <div>
+        {% if request.user in season.users.all %}
+            <div class="widget">
+                <h2>This Week's Games</h2>
                 {% include 'picker/snippits/pick_form_lite.html' with game_list=this_weeks_games %}
             </div>
-        </div>
+        {% else %}
+            {% include 'picker/snippits/join_season_form.html' with season=season %}
+        {% endif %}
     </section>
 
 

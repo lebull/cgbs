@@ -1,60 +1,96 @@
+{% load picker_extras %}
+
+{% if request.user %}
+<ul>
 {% for game in game_list %}
-    <!-- TODO: Merge to one form with two BUTTONS.  Find game by hidden field, 
-    find pick by... make up something.  Have text to the side indicating winner. -->
-    <ul>
-        <li>
-            <form class="pick_form_lite">
-                {% csrf_token %}
-                <input type="hidden" name="game" value="{{ game.pk }}"/>
-                <input type="hidden" name="winner" value="{{ game.away_team.pk }}"/>
-                <input type="submit" value="{{game.away_team}}"/>
-            </form>
-            
-            <form class="pick_form_lite">
-                {% csrf_token %}
-                <input type="hidden" name="game" value="{{ game.pk }}"/>
-                <input type="hidden" name="winner" value="{{ game.home_team.pk }}"/>
-                <input type="submit" value="{{game.home_team}}"/>
-            </form>
-        </li>
-    </ul>
-    
+    {% with game|get_game_pick_by_author:user as pick %}
+            <li>
+                <form class="pick_form_lite" name="game_{{ game.pk }}">
+                    <h2><a href="{% url 'picker:game_detail' pk=game.id %}">{{ game }}</a></h2>
+                    {% csrf_token %}
+                    <input type="hidden" name="game_pk" value="{{ game.pk }}"/>
+                    <input type="hidden" name="away_team" value="{{ game.away_team.pk }}"/>
+                    <input type="hidden" name="home_team" value="{{ game.home_team.pk }}"/>
+                    <button 
+                            name="away_pick_button"
+                            onclick="onPickButtonPress({{ game.pk }}, {{ game.away_team.pk }})"
+                            {% ifequal game.away_team pick.winner %}
+                            class="current_pick"
+                            {% endifequal %}
+                            
+                    >
+                        {{game.away_team}}
+                    </button>
+                    <button 
+                            name="home_pick_button"
+                            onclick="onPickButtonPress({{ game.pk }}, {{ game.home_team.pk }})"
+                            {% ifequal game.home_team pick.winner %}
+                            class="current_pick"
+                            {% endifequal %}
+                    >
+                        {{game.home_team}}
+                    </button>
+                </form>
+            </li>
+    {% endwith %}
 {% endfor %}
+</ul>
 
 <script>
 
-    $(document).ready(function(){
+    function onPickButtonPress(game_pk, winner_pk){
+        event.preventDefault();
+        
+        var form = getPickForm(game_pk);
+        var game_pk = form.find("input:hidden[name=game_pk]").val();
+        var csrf_token = form.find("input:hidden[name=csrfmiddlewaretoken]").val();
+        pickGame(game_pk, winner_pk, csrf_token);
+    };
+    
+    function getPickForm(game_pk){
+        return $(document).find("form[name=game_{0}]".replace("{0}", game_pk));
+    };
+
+    function pickGame(game_pk, winner_pk, csrf_token){
+        
+        form_data = {}
+        form_data['game'] = game_pk
+        form_data['winner'] = winner_pk
+        form_data['csrfmiddlewaretoken'] = csrf_token
         
         
-        $('.pick_form_lite').on('submit', function(event){
-            event.preventDefault();
-            console.log("form submitted!")  // sanity check
-            game= $(this).find("input:hidden[name=game]" ).val();
-            winner=$(this).find("input:hidden[name=winner]" ).val();
-            csrf_token=$(this).find("input:hidden[name=csrfmiddlewaretoken]").val();
-            pickGame(game, winner, csrf_token);
-        });
+        $.ajax({
+            url: "/picker/pick_submit/",
+            type: "POST",
+            data: form_data
+        })
+        //.done(function(response){ alert("Game Picked: " + response); })
+        .success(function(response){
+            setIndicatedPick(game_pk, winner_pk);
+        })
+        .fail(function(response){alert("Problem picking game: " + response);})
+        .always(function(){});
+    }
+    
+    function setIndicatedPick(game_pk, winner_pk){
+
+        form = getPickForm(game_pk);
+        away_pick_button = form.find("button[name='away_pick_button']");
+        home_pick_button = form.find("button[name='home_pick_button']");
+        away_team_pk = form.find("input:hidden[name=away_team]").val();
+        home_team_pk = form.find("input:hidden[name=home_team]").val();
         
-        function pickGame(game_pk, game_winner, csrf_token){
-            
-            form_data = {}
-            form_data['game'] = game_pk
-            form_data['winner'] = game_winner
-            form_data['csrfmiddlewaretoken'] = csrf_token
-            
-            console.log("csrf_token: " + csrf_token)
-            
-            $.ajax({
-                url: "/picker/pick_submit/",
-                type: "POST",
-                data: form_data
-            })
-            .done(function(response){ alert("Game Picked: " + response); })
-            .success(function(response){alert("Game Pick Success: " + response)})
-            .fail(function(response){alert("Problem picking game: " + response);})
-            .always(function(){});
-        }
-    });
+        
+        if(winner_pk == away_team_pk){
+            away_pick_button.addClass("current_pick")
+            home_pick_button.removeClass("current_pick")
+        };
+        if(winner_pk == home_team_pk){
+            away_pick_button.removeClass("current_pick")
+            home_pick_button.addClass("current_pick")
+        };
+    }
     
 </script>
 
+{% endif %}

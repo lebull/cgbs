@@ -37,25 +37,10 @@ hr {
     border-width: 1px 0px 0px 0px;
 }
 
-button{
-    background: none;
-    border: none;
-    color: #EEE;
-    background-color: #111;
-    font-size: 18px;
-    padding: 5px 25px;
-    border-radius: 15px;
-}
-
-button:hover{
-    background-color: #333;
-    cursor: pointer;
-}
 
 #page_wrapper{
-    width: 90%;
-    margin-left:auto;
-    margin-right:auto;
+    margin: 0px 50px;
+    margin-top: 20px;
     overflow:hidden;
     
     /*
@@ -83,53 +68,46 @@ button:hover{
     margin-top: 10px;
 }
 
-.page_column_wrapper{
-    text-align: center;
-    padding: None;
-    padding: 0px 10px;
-    margin: None;
-}
-
 
 /*Grid View*/
 
 
 .grid.left{
     float:left;
-    width: 15em;
+    width: 18em;
 }
 
 .grid.right{
     float:right;
-    width: 15em;
+    width: 18em;
 }
 
 .grid.middle{
     overflow: hidden;
 }
 
+.grid.middle h2{
+    text-align: center;
+}
+
 /*end Grid View*/
 
-.page_column{
-    width: 49%;
-    display: inline-block;
-    vertical-align: top;
+.center_layout{
     text-align: center;
-    min-width: 300px;
 }
 
-.text_body{
-    display: inline-block;
+.front_page{
+    max-width:50em;
+    margin-left:auto;
+    margin-right: auto;
 }
 
-.text_body aside{
-    opacity: 0.5;
-    text-align: right;
+.front_page .widget{
+    margin-bottom: 5em;
 }
 
 .fancy_button{
     background: #222;
-   
     border-radius: 5px;
     border: None;
     text-shadow: 1px 1px 2px #666666;
@@ -137,7 +115,6 @@ button:hover{
     font-size: 24px;
     padding: 5px 15px;
     text-decoration: None;
-    
     width: 100%;
 }
 
@@ -146,29 +123,20 @@ button:hover{
     cursor: pointer;
 }
 
-/*snippits*/
-
-/*Widget*/
 
 .widget{
     display:inline-block;
     vertical-align: top;
     width: 100%;
-
     text-align: left;
     margin-top: 10px;
-    
-
 }
 
 .widget > div{
-    padding: 10px;
-
-    /*border-width: 0px 1px 1px 1px;*/
+    padding: 5px;
 }
 
 .widget h2{
-
     margin: 0px;
     padding: 3px 6px;
     font-size: 18px;
@@ -188,16 +156,9 @@ button:hover{
 }
 
 .widget ul{
-    list-style-type: none;
     padding: 0px;
     margin: 0px;
-}
-
-.widget li{
-
-    border: solid thin #CCC;
-    border-width: 0px 0px 1px 0px;
-    padding: 5px 5px;
+    list-style-type: none;
 }
 
 .widget form{
@@ -205,8 +166,15 @@ button:hover{
     padding: None;
 }
 
-/*Game List*/
+.season_list a{
+    font-size: 32px;
+    text-align: center;
+    color: #222;
+}
 
+.season_list a:hover{
+    color: #666;
+}
 
 .game_list{
      list-style-type: none;
@@ -219,20 +187,13 @@ button:hover{
 
 .game_list li{
     display: block;
-    /*margin-left: 15px;*/
-    /*border: solid thin #333;*/
-    
     margin: 5px 0px;
     padding: 5px 10px;
     vertical-align: middle;
-
-
     border-bottom: solid thin #DDD;
-
 }
 
 .game_list li:hover{
-
     box-shadow: inset 0 0 8px #DDD;
 }
 
@@ -243,25 +204,17 @@ button:hover{
     padding-right: 5px;
 }
 
-.game_list .winner{
-    float: right;
-}
-
 .game_list .pick{
-    opacity: 0.5;
     font-size: 12px;
     font-style: italic;
     padding-right: 5px;
-    float: right;
+    
 }
-
-/* Pick List */
 
 .pick_list_lite{
-    /*border: solid thin #888;*/
-    padding: 15px 15px;
+    font-size: 14px;
+    letter-spacing: -1px;
 }
-
 
 .pick_form{
     text-align: center;
@@ -269,106 +222,127 @@ button:hover{
 
 .pick_form_lite{
     display: inline-block;
-}
-
-/*Pick Form*?
-.pick_form form{
-    display: inline-block;    
-    width: 49%;
-}
-
-
-.pick_form .active_pick {
-    text-decoration: underline;
-}
-
-/*Pick Grid*/
-
-
-.pick_grid{
-    border-collapse: collapse;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.pick_grid td, th{
-    padding: 5px 5px;
-    margin: None;
-    border: 1px solid #666;
-}
-
-.pick_grid td{
-    text-align:center;
-}
-
-.pick_grid th{
-    color: #333;
-    font-size: 20px;
-    font-weight: 300;
-    padding: 5px 5px;
-}
-
-.pick_grid .fancy_button{
-    padding: 4px 2px;
-    margin: 0px 0px 0px 0px;
-    display: block;
     width: 100%;
+    text-align: center;
+}
+
+.pick_form_lite h2 a{
+    color: #222;
+}
+
+.pick_form_lite h2 a:hover{
+    color: #666;
+}
+
+.pick_form_lite button{
+    width: 12em;
+    height: 3em;
+    vertical-align: top;
     border-radius: 0px;
+    min-width: 10em;
+    font-weight: 300;
+    background-color: #DDD;
+    border: solid thin #EEE;
+    color: #666;
+    font-size: 20px;
 }
 
-.pick_grid .bad_pick{
-
+.pick_form_lite button:hover{
+    text-decoration: underline;
+    border: None;
+    cursor: pointer;
 }
 
-
-/* Season List */
-.season_list{
-    font-size: 24px;
+.pick_form_lite .current_pick{
+    background-color: #27651F !important;
+    color: #EEE !important;
 }
 
-.season_list li{
-    padding: 5px 5px;
-    padding-left: 25px;
-}
 
 /*Forms*/
 
 .fancy_form{
     text-align: left;
-}
-
-.fancy_form table{ 
-    margin-left: auto;
+    display: inline-block;
+    margin-left:auto;
     margin-right: auto;
+    padding: 20px 20px;
 }
 
-.fancy_form th{ 
-    border: none;
-    text-align: right;
-    font-size: 28px;
-    font-weight: 300;
-    vertical-align:bottom;
-
+.fancy_form p{ 
+    margin: 0px;
+    margin-bottom: 20px;
 }
 
-.fancy_form input{
-    font-size: 28px;
+.fancy_form input, .fancy_form textarea{
+    display: block;
+    padding:5px 8px;
+    height: 2.5em;
+    width: 100%;
+    min-width: 20em;
+    font-size: 20px;
     border-radius: 5px;
-    border-width: 1px;
-    border-color: #EEE;
-    padding: 5px 15px;
+    border:1px solid #aaa;
+    box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
+}
+
+.fancy_form input:focus, .fancy_form textarea:focus{
+    border: 1px solid #555;
+    box-shadow: 0 0 3px #aaa;
+    background: #fff;
+}
+
+
+.fancy_form label{
+    min-width: 8em;
+    display: inline-block;
+    margin-top: 3px;
+}
+
+.fancy_form .submit{
+    box-shadow: none;
+    background: #858f7e;
+    background-image: -webkit-linear-gradient(top, #858f7e, #2f3631);
+    background-image: -moz-linear-gradient(top, #858f7e, #2f3631);
+    background-image: -ms-linear-gradient(top, #858f7e, #2f3631);
+    background-image: -o-linear-gradient(top, #858f7e, #2f3631);
+    background-image: linear-gradient(to bottom, #858f7e, #2f3631);
+    -webkit-border-radius: 6;
+    -moz-border-radius: 6;
+    border-radius: 6px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+
+.fancy_form .submit:hover{
+    background: #29dbdb;
+    background-image: -webkit-linear-gradient(top, #29dbdb, #217e85);
+    background-image: -moz-linear-gradient(top, #29dbdb, #217e85);
+    background-image: -ms-linear-gradient(top, #29dbdb, #217e85);
+    background-image: -o-linear-gradient(top, #29dbdb, #217e85);
+    background-image: linear-gradient(to bottom, #29dbdb, #217e85);
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .fancy_form .helptext{
     color: #999;
+    width: 5px;
     font-size: 14px;
     font-style: italic;
 }
 
-.fancy_form.ui-btn, input[type="submit"] {
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px 50px;
+
+
+.fancy_form .errorlist{
+    padding: 0px;
+    margin: 0px;
+    list-style-type: None;
+    color: #C00;
+    font-style: italic;
 }
 
 /*generic and messages and stuff*/
@@ -396,16 +370,9 @@ button:hover{
     text-decoration: line-through;
 }
 
-.timestamp{
-    opacity: 0.5;
-    font-size: 12px;
-    letter-spacing: -0.5px;
-}
-
 /*slimmenu customizations*/
 
 .collapse-button:hover, .collapse-button:focus {
-
 
 }
 
@@ -420,16 +387,17 @@ ul.slimmenu {
     border: solid thin black;
     border-width: 0px 0px 0px 0px;
     background-color: #AAA;
-    
-background: rgba(164,179,87,1);
-background: -moz-linear-gradient(left, rgba(164,179,87,1) 0%, rgba(164,179,87,1) 7%, rgba(117,137,12,1) 100%);
-background: -webkit-gradient(left top, right top, color-stop(0%, rgba(164,179,87,1)), color-stop(7%, rgba(164,179,87,1)), color-stop(100%, rgba(117,137,12,1)));
-background: -webkit-linear-gradient(left, rgba(164,179,87,1) 0%, rgba(164,179,87,1) 7%, rgba(117,137,12,1) 100%);
-background: -o-linear-gradient(left, rgba(164,179,87,1) 0%, rgba(164,179,87,1) 7%, rgba(117,137,12,1) 100%);
-background: -ms-linear-gradient(left, rgba(164,179,87,1) 0%, rgba(164,179,87,1) 7%, rgba(117,137,12,1) 100%);
-background: linear-gradient(to right, rgba(164,179,87,1) 0%, rgba(164,179,87,1) 7%, rgba(117,137,12,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a4b357', endColorstr='#75890c', GradientType=1 );
-/*http://www.cssmatic.com/gradient-generator#'\-moz\-linear\-gradient\%28left\%2C\%20rgba\%28164\%2C179\%2C87\%2C1\%29\%200\%25\%2C\%20rgba\%28164\%2C179\%2C87\%2C1\%29\%207\%25\%2C\%20rgba\%28117\%2C137\%2C12\%2C1\%29\%20100\%25\%29\%3B'*/
+        
+    background: rgba(106,163,83,1);
+    background: -moz-linear-gradient(left, rgba(106,163,83,1) 0%, rgba(26,138,11,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(106,163,83,1)), color-stop(100%, rgba(26,138,11,1)));
+    background: -webkit-linear-gradient(left, rgba(106,163,83,1) 0%, rgba(26,138,11,1) 100%);
+    background: -o-linear-gradient(left, rgba(106,163,83,1) 0%, rgba(26,138,11,1) 100%);
+    background: -ms-linear-gradient(left, rgba(106,163,83,1) 0%, rgba(26,138,11,1) 100%);
+    background: linear-gradient(to right, rgba(106,163,83,1) 0%, rgba(26,138,11,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6aa353', endColorstr='#1a8a0b', GradientType=1 );
+/*
+http://www.cssmatic.com/gradient-generator#'\-moz\-linear\-gradient\%28left\%2C\%20rgba\%28106\%2C163\%2C83\%2C1\%29\%200\%25\%2C\%20rgba\%2826\%2C138\%2C11\%2C1\%29\%20100\%25\%29\%3B'*/
 }
 
 ul.slimmenu li{
@@ -437,7 +405,6 @@ ul.slimmenu li{
     text-align: left;
     background: None;
     border: None;
-    
 }
 
 ul.slimmenu li a{
@@ -447,15 +414,15 @@ ul.slimmenu li a{
 }
 
 ul.slimmenu li a:hover{
-    background-color: #657232;
+    background-color: #27651F;
 }
 
 ul.slimmenu li ul li{
-    background-color: #75890c;
+    background-color: #92B18E;
 }
 
 .menu-collapser{
-    background-color:#75890c;
+    background-color:#27651F;
 }
 
 /*
@@ -488,7 +455,6 @@ ul.slimmenu li ul li{
     }
     
     #page_wrapper{
-        width: 95%;
         padding-top: 43px;
     }
     
@@ -510,6 +476,12 @@ ul.slimmenu li ul li{
     .page_column{
         width: 100%;
     }
+    
+    .grid.left, .grid.right{
+        float:None;
+        width: 100%;
+    }
+
     
     .widget{
         box-shadow: None;

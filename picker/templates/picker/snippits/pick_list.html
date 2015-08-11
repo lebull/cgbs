@@ -1,18 +1,7 @@
-<table>
-<tr>
-    <th>Author</th>
-    <th>Pick</th>
-    <th>Game</th>
-    <th>Timestamp</th>
-</tr>
-    
-    
+<ul class="pick_list_lite">
 {% for pick in pick_list %}
-<tr>
-    <td> {{ pick.author }} </td>
-    <td> {{ pick.winner.abreviation }} </td>
-    <td> <a href="{% url 'game_detail' pick.game.id %}">{{ pick.game }} </a> </td>
-    <td> {{ pick.timestamp|date:"Y-m-d H:i" }} </td>
-</tr>
+    <li>
+    {{ pick.author }}
+    </li>
 {% endfor %}
-</table>
+</ul>

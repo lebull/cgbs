@@ -16,7 +16,7 @@
 
 {% block content %}
 
-    <div class="page_column">
+    <section class="grid left">
 
         <div class="widget">
             <h2>Game Details</h2>
@@ -29,58 +29,21 @@
             </div>
         </div>
     
-    
-        <div class="widget">
-            <h2>My Pick</h2>
-            {% ifequal game|can_user_pick:user True %}
-            
-                <div class="widget_content_wrapper">
-                    <div class="pick_form">
-                        <form  method="POST" action="{% url 'picker:pick_submit' %}">
-                            {% csrf_token %}
-                            {{ away_team_pick_form }}
-                            <input class="fancy_button {% ifequal my_pick.winner game.away_team %} active_pick {% endifequal %}" type="submit" value="{{ game.away_team }}"/>
-                        </form>
-                        
-                        <form class="pick_form" method="POST" action="{% url 'picker:pick_submit' %}">
-                            {% csrf_token %}
-                            {{ home_team_pick_form }}
-                            <input class="fancy_button {% ifequal my_pick.winner game.home_team %} active_pick {% endifequal %}" type="submit" value="{{ game.home_team }}"/>
-                       </form>
-                    </div>
-                </div>
-            
-            {% else %}
-                {% ifequal game.pickable False %}
-                    <div class="notice">Picking for this game is closed.</div>
-                {% endifequal %}
-            {% endifequal %}
-        </div> 
-    
-    </div>
-    <div class="page_column">
+    </section>
+    <section class="grid right">
             
         <div class="widget">
             <h2>This game's picks</h2>
             {% if away_picks %}
-    
                 <h3>{{ game.away_team }} ( {{ away_picks|length }} )</h3>
-                <div class="widget_content_wrapper">
-                    {% include 'picker/snippits/pick_list_lite.html' with pick_list=away_picks only %}
-                </div>
-        
+                {% include 'picker/snippits/pick_list.html' with pick_list=away_picks %}
             {% else %}
-            
                 <div class="notice">No one has picked {{ game.away_team }}.</div>
-        
             {% endif %}
-        
         
             {% if home_picks %}
                 <h3>{{ game.home_team }} ( {{ home_picks|length }} )</h3>
-                <div class="widget_content_wrapper">
-                    {% include 'picker/snippits/pick_list_lite.html' with pick_list=home_picks only %}
-                </div>
+                {% include 'picker/snippits/pick_list.html' with pick_list=home_picks %}
             {% else %}
                 <div class="notice">No one has picked {{ game.home_team }}.</div>
             {% endif %}
@@ -94,5 +57,9 @@
                 </div>
             </div>
         {% endif %}
-    </div>
+    </section>
+    
+    <section class="grid middle">
+        
+    </section>
 {% endblock %}

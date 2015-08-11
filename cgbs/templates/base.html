@@ -6,6 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon" />
+    
     <script type="text/javascript" src="{% static 'jquery/jquery-1.11.3.min' %}"></script>
     <script type="text/javascript" src="{% static 'slimmenu/jquery.slimmenu.min.js' %}"></script>
     
@@ -16,12 +18,10 @@
     
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{% static 'style.css' %}" />
-
 </head>
 
 <body>
     {% include 'slimmenu.html' %}
-    <div id="breadcrumb_bar"><div id="page_wrapper">{% block breadcrumbs %}{% endblock %}</div></div>
     <div id="page_wrapper">
         
         {% block page_title %}

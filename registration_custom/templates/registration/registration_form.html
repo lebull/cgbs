@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    <form action="{% url 'registration_register'%}" method="POST" class="fancy_form">
-        
-            {% csrf_token %}
-        
-            <table>
-            {{ form.as_p }}
-            </table>
+    <section class="center_layout">
+        <h2>Register Account</h2>
 
-            <input type="submit" class="submit"/>
-
+        <form action="{% url 'registration_register'%}" method="POST" class="fancy_form">
+            
+                {% csrf_token %}
+            
+                {{ form.as_p }}
     
-    </form>
+                <input type="submit" class="submit"/>
+    
+        </form>
+    </section>
 {% endblock %}

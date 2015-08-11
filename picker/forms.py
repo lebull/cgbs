@@ -20,7 +20,7 @@ class PickForm(forms.ModelForm):
             self.fields['winner'].widget = forms.HiddenInput(attrs={'value': winner.id})
         
         return return_value
-
+        
     #     self.fields['winner'].widget = forms.HiddenInput(attrs={'value':team.id})
     #     self.fields['game'].widget = forms.HiddenInput(attrs={'value':game.id})
         

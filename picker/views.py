@@ -105,9 +105,6 @@ class GameDetailView(DetailView):
 
         context['pick_history'] = game.pick_set.all()
 
-        context['away_team_pick_form'] = PickForm(game=game, winner=game.away_team)
-        context['home_team_pick_form'] = PickForm(game=game, winner=game.home_team)
-        
         context['away_picks'], context['home_picks'] = game.get_away_home_picks()
         
         if self.request.user.is_authenticated():
@@ -122,7 +119,6 @@ class GameDetailView(DetailView):
 class PickSubmitView(LoginRequiredMixin, AjaxableResponseMixin, CreateView):
     template_name = 'picker/pick_submit.html'
     form_class = PickForm
-    
     
     def form_valid(self, form):
         form.instance.author = self.request.user

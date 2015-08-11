@@ -31,7 +31,10 @@ class Season(models.Model):
             
             pick = game.get_current_pick_by_author(user)
             
-            if pick != None and pick.winner == game.winner:
+            if not pick:
+                continue
+            
+            if pick.winner == game.winner:
                 result = (result[0] + 1, result[1])
             else:
                 result = (result[0], result[1] + 1)
@@ -40,23 +43,31 @@ class Season(models.Model):
         
 
     def get_all_user_records(self):
-        records = {}
+        
         result = []
         
         complete_games = self.game_set.filter(complete=True).all()
         
-        for user in self.user_set:
+        for user in self.users.all():
         
             record = (0, 0)
         
             for game in complete_games:
-                if game.get_current_pick_by_author(user).winner == game.winner:
-                    record[user] = (record[0] + 1, record[1])
+                
+                if not game.winner:
+                    continue
+                
+                pick = game.get_current_pick_by_author(user)
+                if not pick:
+                    continue
+                
+                if pick.winner == game.winner:
+                    record = (record[0] + 1, record[1])
                 else:
-                    record[user] = (record[0], record[1] + 1)
+                    record = (record[0], record[1] + 1)
             result.append((user, record))
         
-        #TODO: Sort
+        result.sort(key=lambda user_record: user_record[1], reverse=True)
         
         return result
 
@@ -72,6 +83,7 @@ class Team(models.Model):
     #Rank (null=True, blank=True)
     primary_color = RGBColorField()
     
+    """
     def get_record(self):
         
         wins = 0
@@ -87,8 +99,9 @@ class Team(models.Model):
                     losses += 1
             
         return wins, losses
+    
     record = property(get_record)
-
+    """
     def __unicode__(self):
         return self.name
 
@@ -145,10 +158,14 @@ class Game(models.Model):
         else:
             return False
     
+    """
     def pick(self, author, winner, funny_winner_name=None, funny_looser_name=None):
         
-            if author not in self.season.users.all():
+            if not self.can_user_pick(author):
                 raise ValidationError("User cannot pick")
+                
+            if(self.get_current_pick_by_author(author).winner == winner):
+                raise ValidationError("Repeat Pick")
         
             return Pick.objects.create(
                         author=author,
@@ -157,6 +174,7 @@ class Game(models.Model):
                         funny_winner_name=funny_winner_name,
                         funny_looser_name=funny_looser_name
             )
+    """
         
     def get_current_pick_by_author(self, author):
         try:

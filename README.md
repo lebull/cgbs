@@ -2,42 +2,38 @@ College Gameday Board of Science
 ================================
 
 College Gameday Board of Science began in the depths of bay 6 of MSSC.
-(history)
+
+(History)
 
 (Features)
 
 (Implementation Description)
 
+(What I did well)
+
+(What I would do differently)
 
 
 Priority Todo
 -------------
 
-*pick_form_lite line 2
+*Validate game picking.
 
-*Depricate the grid
+* Styling
+ * favicon.ico
+
+ *Game detail revamp
+  *Fancy jquery widget to show pick proportion?
+   *http://p.ar2oor.pl/cprogress/
+   *http://designscrazed.org/jquery-css3-progress-bars/
+
+Stretch Todo
+------------
 
 *Create user_pick_history snippit
 
 * User Detail
   * List User's Pick History
-
-* Registration
- * Change Templates:
-  * Register
-  * Login
-  * Change Password
-
-* Styling
- * Forms
- * favicon.ico
- * Every page has a heiarchy of information.  Focus on higher bits, and fill in with lesser bits.
-
- * Project Layout:
-  * The breadcrumbs are split across an app and the root static.  That's bad.
-
-Stretch Todo
-------------
 
 *User Preferences
     *Display Name

@@ -19,21 +19,20 @@ Priority Todo
 
 *Validate game picking.
 
- *Game detail revamp
-  *Fancy jquery widget to show pick proportion?
-  
-   *http://p.ar2oor.pl/cprogress/
-   *http://designscrazed.org/jquery-css3-progress-bars/
+ * Game detail revamp
+   * Fancy jquery widget to show pick proportion?
+     * http://p.ar2oor.pl/cprogress/
+     * http://designscrazed.org/jquery-css3-progress-bars/
 
 Stretch Todo
 ------------
 
-*Create user_pick_history snippit
+* Create user_pick_history snippit
 
 * User Detail
   * List User's Pick History
 
-*User Preferences
+* User Preferences
     *Display Name
 
 * Utilize team colors when displaying

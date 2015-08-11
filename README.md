@@ -1,9 +1,9 @@
 College Gameday Board of Science
 ================================
 
-College Gameday Board of Science began in the depths of bay 6 of MSSC.
-
 (History)
+
+College Gameday Board of Science began in the depths of bay 6 of MSSC.
 
 (Features)
 
@@ -17,7 +17,16 @@ College Gameday Board of Science began in the depths of bay 6 of MSSC.
 Priority Todo
 -------------
 
-*Validate game picking.
+* Management
+  * Simulate week
+  * Increment week
+  * Clear games
+  * Clear picks
+  * Clear teams
+
+* At least some basic tests, especially when we get management working.
+
+* Validate game picking.
 
  * Game detail revamp
    * Fancy jquery widget to show pick proportion?
@@ -41,6 +50,12 @@ Stretch Todo
 * Team Detail
  * List passed/upcomming games
  
+Housekeeping
+------------
+* Split style.css into functional parts
+* Clean picker.models
+* Back up users in a fixture
+
 Known Issues
 ------------
 I probably shouldn't have mentioned that the picks aren't validated.

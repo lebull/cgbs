@@ -13,62 +13,54 @@ from django.core.exceptions import ValidationError
 from colorful.fields import RGBColorField
 
 class Season(models.Model):
+    ''' A single season of a single sport.
+    :todo: Split this into a Season(collection of games) and a 
+        Board(collection of users).
+    '''
     name = models.CharField(max_length=128)
     active = models.BooleanField(default=False)
     current_week = models.IntegerField(default=1)
     users = models.ManyToManyField(User, related_name='user')
-    
-    def add_user(self, user):
-        self.users.add(user)
         
     def get_user_record(self, user):
-        #Get all picks
-        complete_games = self.game_set.filter(complete=True).all()
+        '''Get the w-l record of a single user in this season.
+        No pick for a game will not be considered.
         
-        result = (0, 0)
+        :param User: The user whose w-l record will be returned.
+        :return tuple: (wins, losses)
+        '''
+        
+        complete_games = self.game_set.filter(complete=True).all()
+        wins = 0
+        losses = 0
         
         for game in complete_games:
             
+            # Consider only the active pick.
             pick = game.get_current_pick_by_author(user)
             
+            # The user may have not picked this game.
             if not pick:
                 continue
             
-            if pick.winner == game.winner:
-                result = (result[0] + 1, result[1])
+            if (pick.winner == game.winner):
+                wins += 1 
             else:
-                result = (result[0], result[1] + 1)
+                losses += 1
                 
-        return result
+        return (wins, losses)
         
 
     def get_all_user_records(self):
+        ''' Returns a list of users and their records
         
-        result = []
+        :todo: Sort by wins then losses.
         
-        complete_games = self.game_set.filter(complete=True).all()
-        
-        for user in self.users.all():
-        
-            record = (0, 0)
-        
-            for game in complete_games:
-                
-                if not game.winner:
-                    continue
-                
-                pick = game.get_current_pick_by_author(user)
-                if not pick:
-                    continue
-                
-                if pick.winner == game.winner:
-                    record = (record[0] + 1, record[1])
-                else:
-                    record = (record[0], record[1] + 1)
-            result.append((user, record))
-        
-        result.sort(key=lambda user_record: user_record[1], reverse=True)
-        
+        :return list: List of tuples in the format (User, (wins, losses))
+        ordered by wins.
+        '''
+        result = [(user, self.get_user_record(user)) for user in self.users.all()]
+        result.sort(key=lambda user_record: user_record[1])
         return result
 
     def __unicode__(self):
@@ -76,40 +68,19 @@ class Season(models.Model):
         
 
 class Team(models.Model):
+    ''' A team that may or may not win a game. '''
     name = models.CharField(max_length=128)
     abreviation = models.CharField(max_length=4, default='????')
     #Logo image
     rank=models.IntegerField(null=True, blank=True)
-    #Rank (null=True, blank=True)
     primary_color = RGBColorField()
     
-    """
-    def get_record(self):
-        
-        wins = 0
-        losses = 0        
-
-        games = Game.objects.filter(Q(away_team = self) | Q(home_team = self))
-        
-        for game in games:
-            if game.complete:
-                if game.get_winner() == self:
-                    wins += 1
-                else:
-                    losses += 1
-            
-        return wins, losses
-    
-    record = property(get_record)
-    """
     def __unicode__(self):
         return self.name
 
 
 class Game(models.Model):
-    
-    #pickable = PickableGameQuerySet.as_manager()
-    
+
     season = models.ForeignKey(Season)
 
     away_team = models.ForeignKey(Team, related_name='%(class)s_away_team')
@@ -124,7 +95,6 @@ class Game(models.Model):
     
     location = models.CharField(null=True, blank=True, max_length="50")
     
-    
     def get_winner(self):
         if self.complete == True:
             if self.home_score > self.away_score:
@@ -132,11 +102,10 @@ class Game(models.Model):
             if self.away_score > self.home_score:
                 return self.away_team
         return None
+        
     get_winner.description = 'Winner'
     winner = property(get_winner)
     
-    #TODO: Create a manager, and create a get_pickable method.
-    #Keep this here, though.  Refactor to pickable
     def can_pick(self):
         if self.week == self.season.current_week:
             if self.kickoff_time == None:
@@ -158,31 +127,12 @@ class Game(models.Model):
         else:
             return False
     
-    """
-    def pick(self, author, winner, funny_winner_name=None, funny_looser_name=None):
-        
-            if not self.can_user_pick(author):
-                raise ValidationError("User cannot pick")
-                
-            if(self.get_current_pick_by_author(author).winner == winner):
-                raise ValidationError("Repeat Pick")
-        
-            return Pick.objects.create(
-                        author=author,
-                        game=self,
-                        winner=winner,
-                        funny_winner_name=funny_winner_name,
-                        funny_looser_name=funny_looser_name
-            )
-    """
-        
     def get_current_pick_by_author(self, author):
         try:
             return self.pick_set.filter(author=author).latest('id')
         except Pick.DoesNotExist:
             return None
-            
-        
+
     def get_all_picks_by_author(self, author):
         try:
             return self.pick_set.filter(author=author).all()
@@ -198,8 +148,6 @@ class Game(models.Model):
             
         return return_dict
             
-            
-        
     def get_away_home_picks(self):
         
         pick_by_author = {}
@@ -222,37 +170,14 @@ class Game(models.Model):
     def get_away_home_picks_count(self):
         away_home_picks = self.get_away_home_picks()
         return len(away_home_picks[0]), len(away_home_picks[1])
-            
 
     def __unicode__(self):
-        away_rank_string = ""
-        home_rank_string = ""
+        return "{} at {}".format(self.away_team, self.home_team)
         
-        if self.away_team.rank != None:
-            away_rank_string = "({})".format(str(self.away_team.rank))  
-            
-        if self.home_team.rank != None:
-            home_rank_string = "({})".format(str(self.away_team.rank))  
-        
-        return "{} {} vs. {} {}".format(self.away_team, 
-            away_rank_string, 
-            self.home_team, 
-            home_rank_string
-        )
-        
-class PickableGameQuerySet(models.QuerySet):
-    
-    def by_author(self, author):
-        #Return games where the author is accepted in the game's season
-        #   and the game is pickable.
-        pickable_games = self.filter(can_pick=True)
-        return
-    
-    def by_season(self, season):
-        return self.filter(season=season, can_pick=true)
 
 class Pick(models.Model):
-    
+    ''' A user's prediction of who will win a game.
+    '''
     author = models.ForeignKey(User)
     game = models.ForeignKey(Game)
     winner = models.ForeignKey(Team)
@@ -261,5 +186,3 @@ class Pick(models.Model):
     
     def __unicode__(self):
         return str(self.winner.name)    
-
-# Create your models here.

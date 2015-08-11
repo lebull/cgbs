@@ -19,9 +19,6 @@ Priority Todo
 
 *Validate game picking.
 
-* Styling
- * favicon.ico
-
  *Game detail revamp
   *Fancy jquery widget to show pick proportion?
    *http://p.ar2oor.pl/cprogress/

@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% load picker_extras %}
+{% load static %}
+
 
 {% block head %}
+
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -60,6 +63,16 @@
     </section>
     
     <section class="grid middle">
-        
+        <div class="matchup">
+            <h2>Match-up</h2>
+            <div class="left">
+                <h2>{{ game.away_team }}</h2>
+                <div class="pick_counter">{{ away_picks|length }} Pick</div>
+            </div>
+            <div class="right">
+                <h2>{{ game.home_team }}</h2>
+                <div class="pick_counter">{{ home_picks|length }} Pick</div>
+            </div>
+        </div>
     </section>
 {% endblock %}

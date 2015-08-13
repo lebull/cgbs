@@ -3,15 +3,19 @@ College Gameday Board of Science
 
 (History)
 
-College Gameday Board of Science began in the depths of bay 6 of MSSC.
-
 (Features)
 
 (Implementation Description)
 
+(What I learned)
+
 (What I did well)
 
 (What I would do differently)
+
+
+Current Task
+------------
 
 
 Priority Todo
@@ -28,13 +32,16 @@ Priority Todo
 
 * Validate game picking.
 
- * Game detail revamp
-   * Fancy jquery widget to show pick proportion?
-     * http://p.ar2oor.pl/cprogress/
-     * http://designscrazed.org/jquery-css3-progress-bars/
+* Spread out CSS
+
 
 Stretch Todo
 ------------
+
+* Game detail revamp
+* Fancy jquery widget to show pick proportion?
+ * http://p.ar2oor.pl/cprogress/
+ * http://designscrazed.org/jquery-css3-progress-bars/
 
 * Create user_pick_history snippit
 

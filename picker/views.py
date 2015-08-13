@@ -164,7 +164,7 @@ def join_season(request):
     user = request.user
 
     season = Season.objects.get(pk=season_id)
-    season.add_user(user)
+    season.users.add(user)
 
     if request.is_ajax():    
         response_data = {}

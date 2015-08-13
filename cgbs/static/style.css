@@ -92,6 +92,26 @@ hr {
 
 /*end Grid View*/
 
+/* Matchup */
+.matchup {
+    background-color: #DDD;
+}
+
+.matchup  > .left, .right{
+    text-align: center;
+    display: inline-block;
+    width: 49%;
+}
+
+.matchup  > .left{
+    float: left;
+}
+
+.matchup > .right{
+    float:right;
+}
+/* end matchup */
+
 .center_layout{
     text-align: center;
 }
@@ -213,7 +233,12 @@ hr {
 
 .pick_list_lite{
     font-size: 14px;
+}
+
+.pick_list_lite .timestamp{
+    font-size: 12px;
     letter-spacing: -1px;
+    color: #888;
 }
 
 .pick_form{
@@ -258,6 +283,9 @@ hr {
     color: #EEE !important;
 }
 
+.pick_counter > div{
+    font-family: arial !important;
+}
 
 /*Forms*/
 

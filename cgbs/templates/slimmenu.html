@@ -6,7 +6,6 @@
         {% if user.is_authenticated %}
         <li><a>Account</a>
             <ul>
-                <li><a>Account Settings</a></li>
                 <li><a href="{% url 'django.contrib.auth.views.password_change' %}">Change Password</a></li>
                 <li><a href="{% url 'django.contrib.auth.views.logout'%}">Logout</a></li>
             </ul>

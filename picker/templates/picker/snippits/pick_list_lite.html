@@ -1,8 +1,8 @@
 <ul class="pick_list_lite">
 {% for pick in pick_list %}
     <li>
-        <span class="timestamp">{{ pick.timestamp|date:"Y-m-d H:i:s" }}</span>: <br />
-        {{ pick.author }} picked {{ pick.winner }}
+        <span class="timestamp">{{ pick.timestamp|date:"Y-m-d H:i:s" }}</span>: 
+        {{ pick.author }} - {{ pick.winner }}
     </li>
 {% endfor %}
 </ul>

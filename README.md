@@ -34,6 +34,7 @@ Priority Todo
 
 * Spread out CSS
 
+* Have left and right sections prefer the bottom.
 
 Stretch Todo
 ------------
@@ -65,7 +66,10 @@ Housekeeping
 
 Known Issues
 ------------
-I probably shouldn't have mentioned that the picks aren't validated.
+* I probably shouldn't have mentioned that the picks aren't validated.
+* Passed games seem to always be marked as a bad pick on the season list.
+* Leaderboard is reversed
+* Passed games will get very long very quick
 
 Development Console
 -------------------

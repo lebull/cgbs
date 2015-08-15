@@ -3,33 +3,29 @@
 <ul class="game_list">
 {% for game in game_list %}
 
+
+
     <a href="{% url 'picker:game_detail' pk=game.id %}">
-    <li>
+    <li
     
-    <span class="team_name">{{ game.away_team }}</span>
-    at
-    <span class="team_name">{{ game.home_team }}</span>
 
-    <br />
-    
     {% if user.is_authenticated %}
-        
-        {% with game|get_game_pick_by_author:user as pick %}
-    
-        <span class="pick
-            {% ifequal game.winner.id pick.winner.id %}
-                good_pick
-            {% else %}
-                bad_pick
-            {% endifequal %}">
-            {{ game.winner }} Picked
-        </span>
-        
-        {% endwith %}
+        {% if game.complete %}
+            {% with game|get_game_pick_by_author:user as pick %}
+                class="
+                    {% ifequal game.winner pick.winner %}
+                        good_pick
+                    {% else %}
+                        bad_pick
+                    {% endifequal %}"
+            {% endwith %}
+        {% endif %}
     {% endif %}
+    >{{ game }}</li>
 
-    </li>
     </a>
+    
+
 
 {% endfor %}
 </ul>

@@ -60,7 +60,10 @@ class Season(models.Model):
         ordered by wins.
         '''
         result = [(user, self.get_user_record(user)) for user in self.users.all()]
-        result.sort(key=lambda user_record: user_record[1])
+        result.sort(key=lambda user_record: user_record[1][1], reverse=True)
+        result.sort(key=lambda user_record: user_record[1][0], reverse=True)
+        #result.sort(key=lambda user_record: user_record[0])
+
         return result
 
     def __unicode__(self):
@@ -96,6 +99,8 @@ class Game(models.Model):
     location = models.CharField(null=True, blank=True, max_length="50")
     
     def get_winner(self):
+        '''Get the winner of the game if it is complete.
+        :returns: Team or None if the game is not complete'''
         if self.complete == True:
             if self.home_score > self.away_score:
                 return self.home_team
@@ -129,7 +134,7 @@ class Game(models.Model):
     
     def get_current_pick_by_author(self, author):
         try:
-            return self.pick_set.filter(author=author).latest('id')
+            return self.pick_set.filter(author=author).latest('timestamp')
         except Pick.DoesNotExist:
             return None
 
@@ -167,10 +172,6 @@ class Game(models.Model):
 
         return away_picks, home_picks
         
-    def get_away_home_picks_count(self):
-        away_home_picks = self.get_away_home_picks()
-        return len(away_home_picks[0]), len(away_home_picks[1])
-
     def __unicode__(self):
         return "{} at {}".format(self.away_team, self.home_team)
         

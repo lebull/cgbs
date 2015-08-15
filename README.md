@@ -19,19 +19,14 @@ Current Task
 
 Known Issues
 ------------
-* I probably shouldn't have mentioned that the picks aren't validated.
-* Passed games seem to always be marked as a bad pick on the season list.
-* Leaderboard is reversed
+
 * Passed games will get very long very quick
+* Backing out of a game detail shows old picks if user picked before viewing game detail.
 
 Priority Todo
 -------------
 
-
-
 * At least some basic tests, especially when we get management working.
-
-* Validate game picking.
 
 * Spread out CSS
 

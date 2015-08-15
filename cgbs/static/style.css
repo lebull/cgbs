@@ -207,29 +207,22 @@ hr {
 
 .game_list li{
     display: block;
-    margin: 5px 0px;
-    padding: 5px 10px;
-    vertical-align: middle;
-    border-bottom: solid thin #DDD;
+    margin: 2px;
+    padding: 1px 5px;
 }
 
 .game_list li:hover{
-    box-shadow: inset 0 0 8px #DDD;
+    box-shadow: inset 0 0 8px #999;
 }
 
-.game_list .game_date{
-    opacity: 0.5;
-    font-size: 12px;
-    font-style: italic;
-    padding-right: 5px;
+.good_pick{
+    background-color: #7AAA7C;
 }
 
-.game_list .pick{
-    font-size: 12px;
-    font-style: italic;
-    padding-right: 5px;
-    
+.bad_pick{
+    background-color: #D19D94;
 }
+/*end picks for game_list*/
 
 .pick_list_lite{
     font-size: 14px;
@@ -383,19 +376,6 @@ hr {
     font-style: italic;
     font-size: 18px;
     color: #888;
-}
-
-.good_pick, .bad_pick{
-    text-shadow: 1px 1px 3px #CCC;
-}
-
-.good_pick{
-    color: #7AAA7C;
-}
-
-.bad_pick{
-    color: #D19D94;
-    text-decoration: line-through;
 }
 
 /*slimmenu customizations*/

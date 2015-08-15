@@ -126,11 +126,20 @@ class PickSubmitView(LoginRequiredMixin, AjaxableResponseMixin, CreateView):
         picked_winner = form.cleaned_data['winner']
         picked_game = form.cleaned_data['game']
         
+        #Apperiently, returns none if no pick.
+        current_pick = picked_game.get_current_pick_by_author(self.request.user)
+        
+        if current_pick.winner == picked_winner:
+            return self.render_to_json_response(form.errors, status=200)
+
+                
         if picked_winner not in [picked_game.away_team, picked_game.home_team]:
             form.add_error("winner")
             return self.form_invalid(form)
-        else:
-            return super(PickSubmitView, self).form_valid(form)
+            
+            
+    
+        return super(PickSubmitView, self).form_valid(form)
         
     def get_success_url(self):
         return self.request.META.get('HTTP_REFERER', None)

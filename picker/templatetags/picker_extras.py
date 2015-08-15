@@ -2,11 +2,11 @@ from django import template
 
 register = template.Library()
 
-@register.filter
-def can_user_pick(value, arg):
-    game = value
-    user = arg
-    return game.can_user_pick(user)
+# @register.filter
+# def can_user_pick(value, arg):
+#     game = value
+#     user = arg
+#     return game.can_user_pick(user)
 
 @register.filter
 def get_game_pick_by_author(value, arg):

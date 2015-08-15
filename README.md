@@ -17,16 +17,17 @@ College Gameday Board of Science
 Current Task
 ------------
 
+Known Issues
+------------
+* I probably shouldn't have mentioned that the picks aren't validated.
+* Passed games seem to always be marked as a bad pick on the season list.
+* Leaderboard is reversed
+* Passed games will get very long very quick
 
 Priority Todo
 -------------
 
-* Management
-  * Simulate week
-  * Increment week
-  * Clear games
-  * Clear picks
-  * Clear teams
+
 
 * At least some basic tests, especially when we get management working.
 
@@ -38,6 +39,13 @@ Priority Todo
 
 Stretch Todo
 ------------
+
+* Management
+  * Simulate week
+  * Increment week
+  * Clear games
+  * Clear picks
+  * Clear teams
 
 * Game detail revamp
 * Fancy jquery widget to show pick proportion?
@@ -64,12 +72,7 @@ Housekeeping
 * Clean picker.models
 * Back up users in a fixture
 
-Known Issues
-------------
-* I probably shouldn't have mentioned that the picks aren't validated.
-* Passed games seem to always be marked as a bad pick on the season list.
-* Leaderboard is reversed
-* Passed games will get very long very quick
+
 
 Development Console
 -------------------

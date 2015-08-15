@@ -5,6 +5,7 @@ from django.views.generic.edit import CreateView, FormView
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
+
 from forms import PickForm
 from models import Game, Pick, Season
 
@@ -51,8 +52,8 @@ class LoginRequiredMixin(object):
     def as_view(cls, **initkwargs):
         view = super(LoginRequiredMixin, cls).as_view(**initkwargs)
         return login_required(view)
-     
-        
+
+
 class Dashboard(TemplateView):
     template_name='picker/dashboard.html'
 
@@ -112,8 +113,6 @@ class GameDetailView(DetailView):
             context['my_pick'] = game.get_current_pick_by_author(self.request.user)
         
         return context
-        
-    #GetPickCount
 
 
 class PickSubmitView(LoginRequiredMixin, AjaxableResponseMixin, CreateView):
@@ -122,35 +121,19 @@ class PickSubmitView(LoginRequiredMixin, AjaxableResponseMixin, CreateView):
     
     def form_valid(self, form):
         form.instance.author = self.request.user
-        return super(PickSubmitView, self).form_valid(form)
+        
+        #Make sure the picked team is in the game
+        picked_winner = form.cleaned_data['winner']
+        picked_game = form.cleaned_data['game']
+        
+        if picked_winner not in [picked_game.away_team, picked_game.home_team]:
+            form.add_error("winner")
+            return self.form_invalid(form)
+        else:
+            return super(PickSubmitView, self).form_valid(form)
         
     def get_success_url(self):
         return self.request.META.get('HTTP_REFERER', None)
-
-
-class GridView(TemplateView):
-    template_name='picker/grid.html'
-
-    def get_context_data(self, **kwargs):
-        
-        season = Season(id=kwargs['season'])
-        
-
-        context_data = {}
-        context_data['season'] = season
-        
-        context_data['games'] = {}
-        
-        for game in season.game_set.filter(complete=True):
-            try:
-                context_data['games'][game.week].append(game)
-            except KeyError:
-                context_data['games'][game.week] = [game]
-                
-        
-        context_data['users'] = season.users.all()
-        return context_data
-        
         
 @login_required
 def join_season(request):

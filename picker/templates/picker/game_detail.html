@@ -22,11 +22,13 @@
     <section class="grid left">
 
         <div class="widget">
-            <h2>Game Details</h2>
+            
             <div class="widget_content_wrapper">
                 {% ifequal game.complete True %}
-                    {{game.away_team.abreviation}} {{ game.away_score }} - {{game.home_team.abreviation}} {{ game.home_score }}
+                    <h2>Game Outcome</h2>
+                    {{game.away_team}} {{ game.away_score }} - {{game.home_team}} {{ game.home_score }}
                 {% else %}
+                    <h2>Game Details</h2>
                     <p>Kickoff Time: {{ game.kickoff_time }}</p>
                 {% endifequal %}
             </div>

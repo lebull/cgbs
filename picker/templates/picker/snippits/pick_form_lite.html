@@ -68,7 +68,12 @@
         .success(function(response){
             setIndicatedPick(game_pk, winner_pk);
         })
-        .fail(function(response){alert("Problem picking game: " + response);})
+        .fail(function(response){ 
+            var message = "Problem Picking Game";
+
+            alert(message);
+            
+        })
         .always(function(){});
     }
     

@@ -1,12 +1,12 @@
 {% load picker_extras %}
 
-<ul class="game_list">
+
 {% for game in game_list %}
 
 
+<div class="game_list">
+    <a href="{% url 'picker:game_detail' pk=game.id %}"
 
-    <a href="{% url 'picker:game_detail' pk=game.id %}">
-    <li
     
 
     {% if user.is_authenticated %}
@@ -21,11 +21,8 @@
             {% endwith %}
         {% endif %}
     {% endif %}
-    >{{ game }}</li>
-
-    </a>
+    >{{ game }}</a>
     
-
+</div>
 
 {% endfor %}
-</ul>

@@ -33,13 +33,11 @@
     <section class="grid right">
         {% if passed_games %}
             <div class="widget">
-            <h2>Passed Games</h2>
-                <div>
-                    {% for week_number, week_of_games in passed_games.items %}
-                        <h3>Week {{ week_number }}</h3>
-                        {% include 'picker/snippits/game_list.html' with game_list=week_of_games user=request.user only %}
-                    {% endfor %}
-                </div>
+                <h2>Passed Games</h2>
+                {% for week_number, week_of_games in passed_games.items %}
+                    <h3>Week {{ week_number }}</h3>
+                    {% include 'picker/snippits/game_list.html' with game_list=week_of_games user=request.user only %}
+                {% endfor %}
             </div>
         {% endif %}
     </section>

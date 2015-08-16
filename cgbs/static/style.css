@@ -203,24 +203,22 @@ hr {
 
 .game_list a{
     color: #333;
-}
-
-.game_list li{
     display: block;
-    margin: 2px;
-    padding: 1px 5px;
+    padding: 2px 5px;
+    margin-bottom: 2px;
+    
 }
 
-.game_list li:hover{
+.game_list a:hover{
     box-shadow: inset 0 0 8px #999;
 }
 
 .good_pick{
-    background-color: #7AAA7C;
+    background-color: #CBEAC8;
 }
 
 .bad_pick{
-    background-color: #D19D94;
+    background-color: #E8CFCA;
 }
 /*end picks for game_list*/
 

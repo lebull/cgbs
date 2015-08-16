@@ -1,2 +1,1 @@
-export DJANGO_SETTINGS_MODULE=cgbs.settings.prod
-web: gunicorn hellodjango.wsgi --log-file -
+web: gunicorn cgbs.wsgi --log-file -

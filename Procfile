@@ -1,1 +1,1 @@
-web: gunicorn cgbs.wsgi --log-file -
+web: gunicorn cgbs.wsgi --settings cgbs.settings.prod --log-file -

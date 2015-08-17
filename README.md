@@ -1,26 +1,19 @@
 College Gameday Board of Science
 ================================
 
-(History)
+The College Gameday Board of Science (CGBS) is a simple sport picking app to
+provide a way for people to compare their right-wrong record.  The project
+is also an attempt for me to gain exposure and practice with a web framework,
+as well as maintain general web development skills.
 
-(Features)
-
-(Implementation Description)
-
-(What I learned)
-
-(What I did well)
-
-(What I would do differently)
-
-
-Current Task
-------------
+CGBS is built on top of the django webapp framework.  It does not make use of any
+sort of external api ( sports api's are expensive :c ), so games must be entered
+manually by an admin.
 
 Known Issues
 ------------
 
-* Passed games will get very long very quick
+* Passed games list in the season detail will get very long very quick.
 * Backing out of a game detail shows old picks if user picked before viewing game detail.
 
 Priority Todo

@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import email
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 SITE_ID = 1
@@ -91,7 +93,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-STATIC_ROOT = ''
+STATIC_ROOT = 'static'
 
 STATIC_URL = '/static/'
 
@@ -100,7 +102,12 @@ STATICFILES_DIRS = (
 )
 
 #Email
-
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = email.EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = email.EMAIL_HOST_PASSWORD
+EMAIL_USE_TLS = True
+LOGIN_REDIRECT_URL = '/'
 
 #Accounts
 LOGIN_URL = '/login'
@@ -109,3 +116,4 @@ LOGOUT_REDIRECT_URL = '/'
 
 #Registration
 ACCOUNT_ACTIVATION_DAYS = 7
+

@@ -67,7 +67,12 @@ Housekeeping
 * Clean picker.models
 * Back up users in a fixture
 
+Live Server
+-----------
 
+If this project is still active, it can be found at
+
+https://cgbs.herokuapp.com/
 
 Development Console
 -------------------

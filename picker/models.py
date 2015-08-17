@@ -10,7 +10,7 @@ from django.db.models import Q #For ORs in queries
 
 from django.core.exceptions import ValidationError
 
-from colorful.fields import RGBColorField
+#from colorful.fields import RGBColorField
 
 class Season(models.Model):
     ''' A single season of a single sport.
@@ -76,7 +76,7 @@ class Team(models.Model):
     abreviation = models.CharField(max_length=4, default='????')
     #Logo image
     rank=models.IntegerField(null=True, blank=True)
-    primary_color = RGBColorField()
+    #primary_color = RGBColorField()
     
     def __unicode__(self):
         return self.name

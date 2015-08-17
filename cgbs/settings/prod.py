@@ -7,6 +7,8 @@ from cgbs.settings.base import *
 DEBUG = False
 TEMPLATE_DEBUG = False
 
+ALLOWED_HOSTS += [".herokuapp.com"]
+
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
 DATABASES = {}

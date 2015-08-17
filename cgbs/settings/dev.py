@@ -1,7 +1,7 @@
 # http://www.revsys.com/blog/2014/nov/21/recommended-django-project-layout/
 
 from cgbs.settings.base import *
-import email
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

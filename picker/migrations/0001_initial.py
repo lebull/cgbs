@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
             name='Pick',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('timestamp', models.DateTimeField(default=datetime.datetime(2015, 8, 17, 3, 12, 49, 597349, tzinfo=utc))),
+                ('timestamp', models.DateTimeField(default=datetime.datetime(2015, 8, 19, 2, 5, 6, 326842, tzinfo=utc))),
                 ('author', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
                 ('game', models.ForeignKey(to='picker.Game')),
             ],

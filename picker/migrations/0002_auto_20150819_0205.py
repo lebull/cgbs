@@ -16,6 +16,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='pick',
             name='timestamp',
-            field=models.DateTimeField(default=datetime.datetime(2015, 8, 19, 1, 35, 25, 757494, tzinfo=utc)),
+            field=models.DateTimeField(default=datetime.datetime(2015, 8, 19, 2, 5, 48, 583444, tzinfo=utc)),
         ),
     ]

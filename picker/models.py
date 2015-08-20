@@ -96,7 +96,8 @@ class Game(models.Model):
     away_score = models.IntegerField(null=True, blank=True)
     home_score = models.IntegerField(null=True, blank=True)
     
-    location = models.CharField(null=True, blank=True, max_length="50")
+    #Removed because it does weird things on postgres.  no clue why.
+    #location = models.CharField(null=True, blank=True, max_length="50")
     
     def get_winner(self):
         '''Get the winner of the game if it is complete.

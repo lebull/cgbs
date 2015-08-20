@@ -23,7 +23,6 @@ class Migration(migrations.Migration):
                 ('complete', models.BooleanField(default=False)),
                 ('away_score', models.IntegerField(null=True, blank=True)),
                 ('home_score', models.IntegerField(null=True, blank=True)),
-                ('location', models.CharField(max_length=b'50', null=True, blank=True)),
             ],
             options={
             },
@@ -33,7 +32,7 @@ class Migration(migrations.Migration):
             name='Pick',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('timestamp', models.DateTimeField(default=datetime.datetime(2015, 8, 20, 16, 50, 9, 776889, tzinfo=utc))),
+                ('timestamp', models.DateTimeField(default=datetime.datetime(2015, 8, 20, 17, 4, 22, 756222, tzinfo=utc))),
                 ('author', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
                 ('game', models.ForeignKey(to='picker.Game')),
             ],

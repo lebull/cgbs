@@ -25,15 +25,21 @@ class Migration(migrations.Migration):
                 ('home_score', models.IntegerField(null=True, blank=True)),
                 ('location', models.CharField(max_length=b'50', null=True, blank=True)),
             ],
+            options={
+            },
+            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='Pick',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('timestamp', models.DateTimeField(default=datetime.datetime(2015, 8, 19, 2, 5, 6, 326842, tzinfo=utc))),
+                ('timestamp', models.DateTimeField(default=datetime.datetime(2015, 8, 20, 16, 32, 15, 282633, tzinfo=utc))),
                 ('author', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
                 ('game', models.ForeignKey(to='picker.Game')),
             ],
+            options={
+            },
+            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='Season',
@@ -44,6 +50,9 @@ class Migration(migrations.Migration):
                 ('current_week', models.IntegerField(default=1)),
                 ('users', models.ManyToManyField(related_name='user', to=settings.AUTH_USER_MODEL)),
             ],
+            options={
+            },
+            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='Team',
@@ -53,25 +62,32 @@ class Migration(migrations.Migration):
                 ('abreviation', models.CharField(default=b'????', max_length=4)),
                 ('rank', models.IntegerField(null=True, blank=True)),
             ],
+            options={
+            },
+            bases=(models.Model,),
         ),
         migrations.AddField(
             model_name='pick',
             name='winner',
             field=models.ForeignKey(to='picker.Team'),
+            preserve_default=True,
         ),
         migrations.AddField(
             model_name='game',
             name='away_team',
             field=models.ForeignKey(related_name='game_away_team', to='picker.Team'),
+            preserve_default=True,
         ),
         migrations.AddField(
             model_name='game',
             name='home_team',
             field=models.ForeignKey(related_name='game_home_team', to='picker.Team'),
+            preserve_default=True,
         ),
         migrations.AddField(
             model_name='game',
             name='season',
             field=models.ForeignKey(to='picker.Season'),
+            preserve_default=True,
         ),
     ]

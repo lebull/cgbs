@@ -129,7 +129,8 @@ class PickSubmitView(LoginRequiredMixin, AjaxableResponseMixin, CreateView):
         #Apperiently, returns none if no pick.
         current_pick = picked_game.get_current_pick_by_author(self.request.user)
         
-        if current_pick.winner == picked_winner:
+        #If it's a repeat pick, dont' frekin add it...
+        if current_pick and current_pick.winner == picked_winner:
             return self.render_to_json_response(form.errors, status=200)
 
                 

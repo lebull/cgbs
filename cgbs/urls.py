@@ -10,12 +10,12 @@ from registration.backends.default.views import ActivationView, RegistrationView
 
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'cgbs.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
+
+    url(r'^issues/', 
+        TemplateView.as_view(template_name='issues.html'),
+        name='issues'),
 
     url(r'^admin/', include(admin.site.urls)),
-
     
     (r'^picker/', include('picker.urls', namespace='picker', app_name='picker')),
     

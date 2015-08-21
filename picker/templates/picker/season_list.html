@@ -14,11 +14,11 @@
 
         <div class="widget">
             <h2>Select an Active Season</h2>
-            <ul class="season_list">
+            <div class="season_list">
                 {% for season in season_list %}
-                    <a href="{% url 'picker:season_detail' pk=season.id %}"><li> {{ season }} </li></a>
+                    <a href="{% url 'picker:season_detail' pk=season.id %}">{{ season }}</a>
                 {% endfor %}
-            </ul>
+            </div>
 
         </div>
         

@@ -4,7 +4,7 @@
             <form action="{% url 'picker:join_season' %}" method="POST">
                 {% csrf_token %}
                 <input type="hidden" name="season_id" value="{{ season.id }}" />
-                <button>Join</button>
+                <button class="fancy_button">Join</button>
             </form>
         </div>
     </div>

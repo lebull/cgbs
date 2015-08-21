@@ -330,6 +330,7 @@ hr {
 
 .fancy_form .submit{
     background: #222;
+    box-shadow: none;
     border-radius: 5px;
     border: None;
     text-shadow: 1px 1px 2px #666666;

@@ -7,32 +7,30 @@
 
 {% endblock %}
 
-{% block breadcrumbs %}
-    <a href="{% url 'index' %}">CGBS</a> - 
-    <a href="{% url 'picker:season_detail' game.season.id %}">{{ game.season }}</a> -
-    <a href="{% url 'picker:game_detail' game.id %}">{{ game }}</a>
-{% endblock %}
-
 {% block page_title %}
+    <div>
     <h1 class="page_title">{{ game }}</h1>
+    <a href="{% url 'picker:season_detail' game.season.id %}">{{ game.season }}</a>
+    </div>
 {% endblock %}
 
 {% block content %}
 
     <section class="grid left">
+        <div class="widget">
+            
+        </div>
 
         <div class="widget">
             
-            <div class="widget_content_wrapper">
-                {% ifequal game.complete True %}
-                    <h2>Game Outcome</h2>
-                    {{game.away_team}} {{ game.away_score }} - {{game.home_team}} {{ game.home_score }}
-                {% else %}
-                    <h2>Game Details</h2>
-                    <p>Kickoff Time: {{ game.kickoff_time }}</p>
-                {% endifequal %}
-            </div>
-        </div>
+            {% ifequal game.complete True %}
+                <h2>Game Outcome</h2>
+                {{game.away_team}} {{ game.away_score }} - {{game.home_team}} {{ game.home_score }}
+            {% else %}
+                <h2>Game Details</h2>
+                <p>Kickoff Time: {{ game.kickoff_time }}</p>
+            {% endifequal %}
+    </div>
     
     </section>
     <section class="grid right">

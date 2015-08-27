@@ -19,13 +19,16 @@ Known Issues
 Priority Todo
 -------------
 
-* Back Buttons
-
 * At least some basic tests, especially when we get management working.
 
-* Spread out CSS
-
 * Have left and right sections prefer the bottom.
+
+* Create user detail
+
+* Get picks button states from JSON
+
+* Hide game detail if game is pickable
+
 
 Stretch Todo
 ------------

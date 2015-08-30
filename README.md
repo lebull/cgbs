@@ -65,19 +65,13 @@ Housekeeping
 * Clean picker.models
 * Back up users in a fixture
 
-Live Server
+Live Site
 -----------
 
 If this project is still active, it can be found at
 
 https://cgbs.herokuapp.com/
 
-Development Console
--------------------
-
-Development is hosted on Cloud9 IDE.
-
-https://ide.c9.io/lebull/cgbs
 
 Source
 ------

@@ -4,10 +4,13 @@ from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView, FormView
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.datastructures import MultiValueDictKeyError
 
 from forms import PickForm
 from models import Game, Pick, Season
+
+from django.contrib.auth.models import User
 
 import json
 
@@ -75,18 +78,28 @@ class SeasonDetailView(DetailView):
     model = Season
     context_object = 'season'
     
-    
     def get_context_data(self, **kwargs):
         
         season = kwargs['object']
         
         context = super(SeasonDetailView, self).get_context_data(**kwargs)
       
+        context['passed_games'] = {}
+      
         context['this_weeks_games'] = context['season'].game_set.filter(week=context['season'].current_week)
         
-        context['passed_games'] = {}
-        passed_games = []
-        
+        #If a game has already been played this week, move it to passed games.
+        for game in context['this_weeks_games']:
+            if not game.pickable:
+                
+                if not game.week in context['passed_games'].keys():
+                    context['passed_games'][game.week] = []
+                context['passed_games'][game.week].append(game)
+                context['this_weeks_games'] = context['this_weeks_games'].exclude(pk=game.pk)
+                
+                    
+
+        #Populate passed games
         for game in season.game_set.filter(week__lt=season.current_week):
             if game.week in context['passed_games']:
                 context['passed_games'][game.week].append(game)
@@ -132,6 +145,11 @@ class PickSubmitView(LoginRequiredMixin, AjaxableResponseMixin, CreateView):
         #If it's a repeat pick, dont' frekin add it...
         if current_pick and current_pick.winner == picked_winner:
             return self.render_to_json_response(form.errors, status=200)
+        
+        #If the game isn't pickable, return an error.
+        if not picked_game.pickable:
+            form.add_error("game")
+            return self.render_to_json_response(form.errors, status=200)
 
                 
         if picked_winner not in [picked_game.away_team, picked_game.home_team]:
@@ -144,6 +162,8 @@ class PickSubmitView(LoginRequiredMixin, AjaxableResponseMixin, CreateView):
         
     def get_success_url(self):
         return self.request.META.get('HTTP_REFERER', None)
+        
+# --Oneshots--
         
 @login_required
 def join_season(request):
@@ -169,3 +189,32 @@ def join_season(request):
         )
     else:
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+#@login_required
+@csrf_exempt
+def get_picks(request):
+    """This provides a way for ajax calls to get the user's own picks"""
+    response_data = {}
+
+    if not request.user.id:
+        user = User.objects.get(username="lebull")
+    else:
+        user = request.user
+    
+    games = []
+    
+    try:
+        games = json.loads(request.POST['games'])
+    except MultiValueDictKeyError:
+        return HttpResponse(request.POST, status=400, content_type="application/json")
+    
+    response_data['games'] = {}
+    
+    "Get picks by a list of games"
+    for game_id in games:
+        game = Game.objects.get(id=game_id)
+        game_id = game.id
+        winner_id = game.get_current_pick_by_author(user).winner.id
+        response_data['games'][game_id] = winner_id
+    
+    return HttpResponse(json.dumps(response_data), content_type="application/json")

@@ -6,6 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.datastructures import MultiValueDictKeyError
+from django.core.exceptions import ObjectDoesNotExist
 
 from forms import PickForm
 from models import Game, Pick, Season
@@ -202,9 +203,11 @@ def get_picks(request):
     
     #Get picks by a list of games
     for game_id in games:
+
         game = Game.objects.get(id=game_id)
-        game_id = game.id
-        winner_id = game.get_current_pick_by_author(user).winner.id
-        response_data['picks'][game_id] = winner_id
+        #except ObjectDoesNotExist:
+        pick = game.get_current_pick_by_author(user)
+        if pick:
+            response_data['picks'][game.id] = pick.winner.id
     
     return HttpResponse(json.dumps(response_data), content_type="application/json")

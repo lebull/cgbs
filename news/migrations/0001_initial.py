@@ -16,6 +16,7 @@ class Migration(migrations.Migration):
             name='NewsPost',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('title', models.CharField(max_length=256, verbose_name='title')),
                 ('body', models.TextField(verbose_name='body')),
                 ('timestamp', models.DateTimeField(auto_now_add=True, verbose_name='timestamp')),
                 ('author', models.ForeignKey(blank=True, to=settings.AUTH_USER_MODEL, null=True)),

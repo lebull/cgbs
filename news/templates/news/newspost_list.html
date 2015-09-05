@@ -5,7 +5,7 @@
         {% for post in newspost_list %}
             <li>
                 <div>
-                    <h2 href="{% url 'news:newspost_detail' post.pk %}">{{ post }}</h2>
+                    <h2 href="{% url 'news:newspost_detail' post.pk %}">{{ post.title }}</h2>
                     <p>{{ post.body }}</p>
                 </div>
             </li>

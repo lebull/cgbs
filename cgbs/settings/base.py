@@ -45,6 +45,7 @@ PREREQ_APPS = [
 
 PROJECT_APPS = [
     'picker',
+    'news',
     'registration_custom',
     'cgbs'
 ]

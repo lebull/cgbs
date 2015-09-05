@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="widget">
+    <ul>
+        {% for post in newspost_list %}
+            <li>
+                <div>
+                    <h2 href="{% url 'news:newspost_detail' post.pk %}">{{ post }}</h2>
+                    <p>{{ post.body }}</p>
+                </div>
+            </li>
+        {% empty %}
+        <p>No news items</p>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

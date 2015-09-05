@@ -68,10 +68,6 @@ class Dashboard(TemplateView):
 
 class SeasonListView(ListView):
     model = Season
-    
-    def get_context_data(self, **kwargs):
-        context = super(SeasonListView, self).get_context_data(**kwargs)
-        return context
         
         
 class SeasonDetailView(DetailView):

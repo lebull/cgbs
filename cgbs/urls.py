@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.views.generic import TemplateView, CreateView
 from registration.forms import UserCreationForm
 from picker.views import SeasonListView
+from news.views import NewsPostListView, NewsPostDetailView
 
 from registration.backends.default.views import ActivationView, RegistrationView
 
@@ -18,7 +19,8 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     
     (r'^picker/', include('picker.urls', namespace='picker', app_name='picker')),
-    
+    (r'^news/', include('news.urls', namespace='news', app_name='news')),
+     
     url(r'^accounts/activate/complete/$',
         TemplateView.as_view(template_name='registration/activation_complete.html'),
         name='registration_activation_complete'),

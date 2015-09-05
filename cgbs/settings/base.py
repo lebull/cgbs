@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'cgbs.wsgi.application'
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Chicago'
 
 USE_I18N = True
 
@@ -116,4 +116,3 @@ LOGOUT_REDIRECT_URL = '/'
 
 #Registration
 ACCOUNT_ACTIVATION_DAYS = 7
-

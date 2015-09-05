@@ -14,19 +14,12 @@
                     <button 
                             name="away_pick_button"
                             onclick="onPickButtonPress({{ game.pk }}, {{ game.away_team.pk }})"
-                            {% ifequal game.away_team pick.winner %}
-                            class="current_pick"
-                            {% endifequal %}
-                            
                     >
                         {{game.away_team}}
                     </button>
                     <button 
                             name="home_pick_button"
                             onclick="onPickButtonPress({{ game.pk }}, {{ game.home_team.pk }})"
-                            {% ifequal game.home_team pick.winner %}
-                            class="current_pick"
-                            {% endifequal %}
                     >
                         {{game.home_team}}
                     </button>
@@ -96,6 +89,41 @@
         };
     }
     
+    function getPicks(game_pks){
+        call_data = {
+            games: game_pks
+        }
+
+        $.ajax({
+            url: "/picker/get_picks/",
+            type: "POST",
+            data: call_data
+        })
+        
+        //.done(function(response){ alert("Game Picked: " + response); })
+        .success(function(response){
+            //console.log(response)
+            //setIndicatedPick(game_pk, winner_pk);
+            for(game_pk in response.picks)
+            {
+                winner_pk = response.picks[game_pk];
+                //console.log(game_pk, pick_winner_pk);
+                setIndicatedPick(game_pk, winner_pk);
+            }
+        })
+        .fail(function(response){ 
+            console.log(response);
+            alert("Error retrieving picks.")
+        })
+        .always(function(){});
+    }
+    
+    $(document).ready(function(){
+            //TODO: Lets try to get this with the form's id
+            games = "{% for game in game_list %}{% if not forloop.first %}, {% endif %}{{ game.id }}{% endfor %}";
+            getPicks(games);
+        }
+    );
 </script>
 
 {% endif %}

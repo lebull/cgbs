@@ -13,5 +13,6 @@ urlpatterns = patterns('picker.urls',
     url(r'^game_(?P<pk>[0-9]+)/$', views.GameDetailView.as_view(), name='game_detail'),
     url(r'^pick_submit/$', views.PickSubmitView.as_view(), name='pick_submit'),
     url(r'join_season/$', views.join_season, name='join_season'),
-    url(r'season_list/$', views.SeasonListView.as_view(), name='season_list'),
+    url(r'^get_picks/$', views.get_picks, name='get_picks'),
+    url(r'^season_list/$', views.SeasonListView.as_view(), name='season_list'),
 )

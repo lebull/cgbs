@@ -11,13 +11,14 @@ class GameAdmin(admin.ModelAdmin):
     
     list_display = ('__unicode__', 'season', 'kickoff_time', 'can_pick', 'get_winner')
     
-    list_filter = ['away_team', 'home_team', 'week', 'kickoff_time']
+    list_filter = ['week', 'kickoff_time', 'away_team', 'home_team']
     
 class TeamAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', )
     
 class PickAdmin(admin.ModelAdmin):
     list_display = ('author', 'winner', 'game', 'timestamp')
+    list_filter = ['author']
 
 admin.site.register(Game, GameAdmin)
 admin.site.register(Team, TeamAdmin)

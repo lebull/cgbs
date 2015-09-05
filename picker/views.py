@@ -97,8 +97,6 @@ class SeasonDetailView(DetailView):
                 context['passed_games'][game.week].append(game)
                 context['this_weeks_games'] = context['this_weeks_games'].exclude(pk=game.pk)
                 
-                    
-
         #Populate passed games
         for game in season.game_set.filter(week__lt=season.current_week):
             if game.week in context['passed_games']:
@@ -150,13 +148,10 @@ class PickSubmitView(LoginRequiredMixin, AjaxableResponseMixin, CreateView):
         if not picked_game.pickable:
             form.add_error("game")
             return self.render_to_json_response(form.errors, status=200)
-
                 
         if picked_winner not in [picked_game.away_team, picked_game.home_team]:
             form.add_error("winner")
             return self.form_invalid(form)
-            
-            
     
         return super(PickSubmitView, self).form_valid(form)
         
@@ -190,7 +185,7 @@ def join_season(request):
     else:
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-#@login_required
+@login_required
 @csrf_exempt
 def get_picks(request):
     """This provides a way for ajax calls to get the user's own picks"""
@@ -201,20 +196,19 @@ def get_picks(request):
     else:
         user = request.user
     
-    games = []
-    
     try:
-        games = json.loads(request.POST['games'])
+        games = [int(g) for g in request.POST['games'].split(',')] #I have no clue why, but the brackets are added to this array.  Oh well, no harm done.
     except MultiValueDictKeyError:
-        return HttpResponse(request.POST, status=400, content_type="application/json")
+        return_thing = request.POST
+        return HttpResponse(return_thing, status=400, content_type="application/json")
     
-    response_data['games'] = {}
+    response_data['picks'] = {}
     
-    "Get picks by a list of games"
+    #Get picks by a list of games
     for game_id in games:
         game = Game.objects.get(id=game_id)
         game_id = game.id
         winner_id = game.get_current_pick_by_author(user).winner.id
-        response_data['games'][game_id] = winner_id
+        response_data['picks'][game_id] = winner_id
     
     return HttpResponse(json.dumps(response_data), content_type="application/json")

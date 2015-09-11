@@ -60,6 +60,7 @@ class Season(models.Model):
         ordered by wins.
         '''
         result = [(user, self.get_user_record(user)) for user in self.users.all()]
+        
         result.sort(key=lambda user_record: user_record[1][1], reverse=True)
         result.sort(key=lambda user_record: user_record[1][0], reverse=True)
         #result.sort(key=lambda user_record: user_record[0])
@@ -135,7 +136,7 @@ class Game(models.Model):
     
     def get_current_pick_by_author(self, author):
         try:
-            return self.pick_set.filter(author=author).latest('timestamp')
+            return self.pick_set.filter(author=author).latest('pk')
         except Pick.DoesNotExist:
             return None
 

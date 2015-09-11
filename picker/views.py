@@ -188,16 +188,19 @@ def get_picks(request):
     """This provides a way for ajax calls to get the user's own picks"""
     response_data = {}
 
-    if not request.user.id:
-        user = User.objects.get(username="lebull")
-    else:
-        user = request.user
+    user = request.user
     
-    try:
-        games = [int(g) for g in request.POST['games'].split(',')] #I have no clue why, but the brackets are added to this array.  Oh well, no harm done.
-    except MultiValueDictKeyError:
-        return_thing = request.POST
-        return HttpResponse(return_thing, status=400, content_type="application/json")
+    games = []
+    
+    #Only try this if we are asking at least one game.  Otherwise, just return a normal response with no games.
+    if request.POST['games']:
+        try:
+            #I have no clue why, but the brackets are added to this array in the
+            #incoming json data.  Oh well, no harm done.
+            games = [int(g) for g in request.POST['games'].split(',')] 
+        except MultiValueDictKeyError:
+            return_thing = request.POST
+            return HttpResponse(return_thing, status=400, content_type="application/json")
     
     response_data['picks'] = {}
     

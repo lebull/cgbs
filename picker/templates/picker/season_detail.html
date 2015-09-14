@@ -37,7 +37,7 @@
             
                 {% for week_number, week_of_games in passed_games.items %}
                     <h3>Week {{ week_number }}</h3>
-                    {% include 'picker/snippits/game_list.html' with game_list=week_of_games user=request.user only %}
+                    {% include 'picker/snippits/game_list.html' with game_list=week_of_games target_user=request.user %}
                 {% endfor %}
             {% else %}
             <span class="notice">No Passed Games</span>

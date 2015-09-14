@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.datastructures import MultiValueDictKeyError
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
+
 
 from forms import PickForm
 from models import Game, Pick, Season
@@ -102,7 +104,33 @@ class SeasonDetailView(DetailView):
                 context['passed_games'][game.week] = [game]
         return context
    
- 
+class UserDetailView(TemplateView):
+    
+    template_name='picker/user_detail.html'
+    
+    def get_context_data(self, **kwargs):
+        
+        context = super(UserDetailView, self).get_context_data(**kwargs)
+        
+        context['target_user'] = User.objects.get(pk=kwargs['user_pk'])
+
+        season = Season.objects.get(pk=kwargs['season_pk'])
+
+        context['games_by_week'] = {}
+        
+        #TODO: move this filter into the model's manager or something
+        games = season.game_set.filter(Q(complete=True) | Q(week__lt=season.current_week))
+        for game in games:
+            pick = game.get_current_pick_by_author(context['target_user'])
+            
+            if not context['games_by_week'].get(game.week):
+                context['games_by_week'][game.week] = [game]
+            else:
+                context['games_by_week'][game.week].append(game)
+                
+        return context
+        
+
 class GameDetailView(DetailView):
     model = Game
     context_object = 'game'

@@ -40,13 +40,13 @@ class Season(models.Model):
             pick = game.get_current_pick_by_author(user)
             
             # The user may have not picked this game.
-            if not pick:
-                continue
             
-            if (pick.winner == game.winner):
-                wins += 1 
-            else:
+            if pick == None or pick.winner != game.winner:
                 losses += 1
+            
+            elif pick.winner == game.winner:
+                wins += 1 
+
                 
         return (wins, losses)
         

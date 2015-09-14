@@ -3,15 +3,12 @@
 
 {% for game in game_list %}
 
-
 <div class="game_list">
     <a href="{% url 'picker:game_detail' pk=game.id %}"
 
-    
-
-    {% if user.is_authenticated %}
+    {% if target_user.is_active %}
         {% if game.complete %}
-            {% with game|get_game_pick_by_author:user as pick %}
+            {% with game|get_game_pick_by_author:target_user as pick %}
                 class="
                     {% ifequal game.winner pick.winner %}
                         good_pick

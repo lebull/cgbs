@@ -9,7 +9,7 @@ class GameAdmin(admin.ModelAdmin):
         ('Results', {'fields': ['complete', 'away_score', 'home_score']}),
     ]
     
-    list_display = ('__unicode__', 'season', 'kickoff_time', 'can_pick', 'get_winner')
+    list_display = ('__unicode__', 'season', 'kickoff_time', 'can_pick', 'get_winner', 'complete')
     
     list_filter = ['week', 'kickoff_time', 'away_team', 'home_team']
     

@@ -4,7 +4,7 @@ from cgbs.settings.base import *
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS += [".herokuapp.com"]

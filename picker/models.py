@@ -34,15 +34,15 @@ class Season(models.Model):
         
         #result = [(user, self.get_user_record(user)) for user in self.users.all()]
         result = []
-        
-        wins = 0
-        losses = 0
 
         users = self.users.all()
         completed_games = self.game_set.filter(complete=True).all()
 
         #Loop through this season's users.
         for author in users:
+            wins = 0
+            losses = 0
+        
             #Loop through completed games
             for game in completed_games:
         

@@ -23,11 +23,7 @@ Priority Todo
 
 * Have left and right sections prefer the bottom.
 
-* Create user detail
-
-* Get picks button states from JSON
-
-* Hide game detail if game is pickable
+* Hide game detail if game is pickable?
 
 
 Stretch Todo

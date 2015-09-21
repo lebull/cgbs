@@ -1,0 +1,31 @@
+This document details my experience in developing and maintaining CGBS
+
+
+
+Week 4:
+    What is happening:
+        Everyone seems to be enjoying suing CGBS.  Two users didn't pick last week,
+        making it 6 people who are consistantly picking.
+        
+        It also became apperant that the UCONN vs Arkansas State game didn't exist at all.
+        I think this was an error from when I plugged the game in.
+        
+    What is wrong:
+        Season detail page is incredibly slow.  I think it can be improved by rewriting
+            the model's method for getting the user's pick records.
+        There are still issues with games that were imported being flat out wrong.
+    
+    What I can improve:
+        The leaderboard looks horrible.   It should look nice, give some emphasis
+        to the leader(s), and account for ties.
+        
+    ---
+    
+    What I did:
+        I searched the django documentation to find what tools are available for
+        database access optimization.  I .select_related() .prefetch_related()
+        can be used in lines that involve queries to join related objects in said query.
+        
+        I have found that it's useful to implement the more complex db calling in
+        the views, and it feels very clean and right to collect all data that
+        you know for sure you will use at that top of the view's method.

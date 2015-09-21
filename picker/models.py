@@ -21,35 +21,7 @@ class Season(models.Model):
     active = models.BooleanField(default=False)
     current_week = models.IntegerField(default=1)
     users = models.ManyToManyField(User, related_name='user')
-        
-    def get_user_record(self, user):
-        '''Get the w-l record of a single user in this season.
-        No pick for a game will not be considered.
-        
-        :param User: The user whose w-l record will be returned.
-        :return tuple: (wins, losses)
-        '''
-        
-        complete_games = self.game_set.filter(complete=True).all()
-        wins = 0
-        losses = 0
-        
-        for game in complete_games:
-            
-            # Consider only the active pick.
-            pick = game.get_current_pick_by_author(user)
-            
-            # The user may have not picked this game.
-            
-            if pick == None or pick.winner != game.winner:
-                losses += 1
-            
-            elif pick.winner == game.winner:
-                wins += 1 
 
-                
-        return (wins, losses)
-        
 
     def get_all_user_records(self):
         ''' Returns a list of users and their records
@@ -59,11 +31,33 @@ class Season(models.Model):
         :return list: List of tuples in the format (User, (wins, losses))
         ordered by wins.
         '''
-        result = [(user, self.get_user_record(user)) for user in self.users.all()]
         
+        #result = [(user, self.get_user_record(user)) for user in self.users.all()]
+        result = []
+        
+        wins = 0
+        losses = 0
+
+        users = self.users.all()
+        completed_games = self.game_set.filter(complete=True).all()
+
+        #Loop through this season's users.
+        for author in users:
+            #Loop through completed games
+            for game in completed_games:
+        
+                # Consider only the active pick.
+                pick = game.get_current_pick_by_author(author)
+
+                if pick and pick.winner == game.winner:
+                    wins += 1 
+                else:
+                    losses += 1
+                    
+            result.append( (author, (wins, losses)) )
+
         result.sort(key=lambda user_record: user_record[1][1], reverse=True)
         result.sort(key=lambda user_record: user_record[1][0], reverse=True)
-        #result.sort(key=lambda user_record: user_record[0])
 
         return result
 
@@ -136,7 +130,7 @@ class Game(models.Model):
     
     def get_current_pick_by_author(self, author):
         try:
-            return self.pick_set.filter(author=author).latest('pk')
+            return self.pick_set.select_related('winner').filter(author=author).latest('timestamp')
         except Pick.DoesNotExist:
             return None
 

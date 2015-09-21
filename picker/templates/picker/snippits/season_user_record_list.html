@@ -1,7 +1,0 @@
-{% load picker_extras %}
-
-<ol class="user_list">
-{% for user, record in season.get_all_user_records %}
-    <li><a href="{% url 'picker:user_detail' season_pk=season.id user_pk=user.id %}">{{ user }} ({{ record.0 }} - {{ record.1 }})</a></li>
-{% endfor %}
-</ol>

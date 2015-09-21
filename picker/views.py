@@ -11,7 +11,7 @@ from django.db.models import Q
 
 
 from forms import PickForm
-from models import Game, Pick, Season
+from models import Game, Pick, Season, Team
 
 from django.contrib.auth.models import User
 
@@ -79,25 +79,28 @@ class SeasonDetailView(DetailView):
     
     def get_context_data(self, **kwargs):
         
-        season = kwargs['object']
         
+        season = kwargs['object']
+        games = season.game_set.select_related('away_team', 'home_team') \
+            .filter(week__lte=season.current_week)
+
         context = super(SeasonDetailView, self).get_context_data(**kwargs)
-      
+
         context['passed_games'] = {}
-      
-        context['this_weeks_games'] = context['season'].game_set.filter(week=context['season'].current_week)
+        #context['last_weeks_games'] = games.filter(week=season.current_week-1).all()
+        context['this_weeks_games'] = games.filter(week=season.current_week).all()
+        
         
         #If a game has already been played this week, move it to passed games.
         for game in context['this_weeks_games']:
             if not game.pickable:
-                
                 if not game.week in context['passed_games'].keys():
                     context['passed_games'][game.week] = []
                 context['passed_games'][game.week].append(game)
                 context['this_weeks_games'] = context['this_weeks_games'].exclude(pk=game.pk)
                 
         #Populate passed games
-        for game in season.game_set.filter(week__lt=season.current_week):
+        for game in games.filter(week__lt=season.current_week, complete=True).all():
             if game.week in context['passed_games']:
                 context['passed_games'][game.week].append(game)
             else:
@@ -119,7 +122,9 @@ class UserDetailView(TemplateView):
         context['games_by_week'] = {}
         
         #TODO: move this filter into the model's manager or something
-        games = season.game_set.filter(Q(complete=True) | Q(week__lt=season.current_week))
+        #games = season.game_set.filter(Q(complete=True) | Q(week__lt=season.current_week))
+        games = season.game_set.prefetch_related('pick_set').filter(complete=True).all()
+        
         for game in games:
             pick = game.get_current_pick_by_author(context['target_user'])
             
@@ -218,25 +223,25 @@ def get_picks(request):
 
     user = request.user
     
-    games = []
+    game_ids = []
     
     #Only try this if we are asking at least one game.  Otherwise, just return a normal response with no games.
-    if request.POST['games']:
+    if request.POST.get('games'):
         try:
             #I have no clue why, but the brackets are added to this array in the
             #incoming json data.  Oh well, no harm done.
-            games = [int(g) for g in request.POST['games'].split(',')] 
+            game_ids = [int(g) for g in request.POST['games'].split(',')] 
         except MultiValueDictKeyError:
             return_thing = request.POST
             return HttpResponse(return_thing, status=400, content_type="application/json")
     
     response_data['picks'] = {}
     
+    games = Game.objects.prefetch_related('pick_set').filter(id__in=game_ids)
+    
     #Get picks by a list of games
-    for game_id in games:
+    for game in games.all():
 
-        game = Game.objects.get(id=game_id)
-        #except ObjectDoesNotExist:
         pick = game.get_current_pick_by_author(user)
         if pick:
             response_data['picks'][game.id] = pick.winner.id

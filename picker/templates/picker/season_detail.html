@@ -10,21 +10,15 @@
 
     <!-- Left Column -->
     <section class="grid left">
-        
-        <div class="widget">
-            <h2>Season Details</h2>
-            <div>
-                <ul>
-                    <li>Number of Users: {{ season.users.all|length }}</li>
-                    <li>Active: {{ season.active }}</li>
-                </ul>
-            </div>
-        </div>
-        
+
         <div class="widget">
             <h2>Leaderboard</h2>
             <div>
-                {% include 'picker/snippits/season_user_record_list.html' %}
+                <ol class="user_list">
+                {% for user, record in season.get_all_user_records %}
+                    <li><a href="{% url 'picker:user_detail' season_pk=season.id user_pk=user.id %}">{{ user }} ({{ record.0 }} - {{ record.1 }})</a></li>
+                {% endfor %}
+                </ol>
             </div>
         </div>
     </section>
@@ -40,7 +34,7 @@
                     {% include 'picker/snippits/game_list.html' with game_list=week_of_games target_user=request.user %}
                 {% endfor %}
             {% else %}
-            <span class="notice">No Passed Games</span>
+                <span class="notice">No Passed Games</span>
             {% endif %}
         </div>
     </section>        
